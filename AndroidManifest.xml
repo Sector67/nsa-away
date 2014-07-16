@@ -22,6 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        <activity android:name=".EnterPlaintextActivity"></activity>
+        <activity android:name=".KeyChooserActivity"></activity>
+        <activity android:name=".DisplayCiphertextActivity"></activity>
+        </application>
 
 </manifest>

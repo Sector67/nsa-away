@@ -3,12 +3,14 @@ package org.sector67.nsaaway;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.os.Build;
 
 public class MainActivity extends Activity {
@@ -18,10 +20,27 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		/*
 		if (savedInstanceState == null) {
+
 			getFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
+					.add(R.id.mainRelativeLayout, new PlaceholderFragment()).commit();
 		}
+		*/
+		
+        Button startEncryptionButton = (Button) findViewById(R.id.chooseKeyForEncryptionButton);
+        Button startDecryptionButton = (Button) findViewById(R.id.startDecryptionButton);
+        Button startKeyManagementButton = (Button) findViewById(R.id.startKeyManagementButton);
+        
+
+		
+        //Listen for a button event
+		startEncryptionButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                Intent nextScreen = new Intent(getApplicationContext(), EnterPlaintextActivity.class); 
+                startActivity(nextScreen); 
+            }
+        });
 	}
 
 	@Override

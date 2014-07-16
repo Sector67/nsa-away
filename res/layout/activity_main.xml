@@ -1,8 +1,35 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/mainRelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context="org.sector67.nsaaway.MainActivity"
-    tools:ignore="MergeRootFrame" />
+    tools:ignore="MergeRootFrame" >
 
+    <Button
+        android:id="@+id/chooseKeyForEncryptionButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/start_encryption_button" />
+
+    <Button
+        android:id="@+id/startDecryptionButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chooseKeyForEncryptionButton"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:text="@string/start_decryption_button" />
+
+    <Button
+        android:id="@+id/startKeyManagementButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/startDecryptionButton"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:text="@string/start_key_management_button" />
+
+</RelativeLayout>
