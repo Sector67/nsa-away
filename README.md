@@ -7,5 +7,5 @@ NSA Away Android application repository for the Hackaday prize
 
  - clone the repo
  - from within the Android SDK:
-   - File > Import > Existing Projects into Workspace 
+   - File &raquo; Import &raquo; Existing Projects into Workspace
  - build and run!
