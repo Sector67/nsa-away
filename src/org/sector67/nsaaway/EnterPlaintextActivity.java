@@ -34,20 +34,20 @@ public class EnterPlaintextActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_enter_plaintext);
+				
+        	Button chooseKeyForEncryptionButton = (Button) findViewById(R.id.chooseKeyForEncryptionButton);
 		
-        Button chooseKeyForEncryptionButton = (Button) findViewById(R.id.chooseKeyForEncryptionButton);
-
-        //Listen for a button event
-        chooseKeyForEncryptionButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                Intent nextScreen = new Intent(getApplicationContext(), KeyChooserActivity.class);
+        	//Listen for a button event
+        	chooseKeyForEncryptionButton.setOnClickListener(new View.OnClickListener() {
+            		public void onClick(View arg0) {
+                		Intent nextScreen = new Intent(getApplicationContext(), KeyChooserActivity.class);
                 
-                EditText txtInput = (EditText)findViewById(R.id.plaintextEditText);
-                String plaintext = txtInput.getText().toString();
+                		EditText txtInput = (EditText)findViewById(R.id.plaintextEditText);
+                		String plaintext = txtInput.getText().toString();
                 
-                nextScreen.putExtra("PLAINTEXT", plaintext);
-                startActivity(nextScreen); 
-            }
-        });
+                		nextScreen.putExtra("PLAINTEXT", plaintext);
+                		startActivity(nextScreen); 
+            		}
+        	});
 	}
 }
