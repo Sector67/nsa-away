@@ -50,19 +50,19 @@ public class MainActivity extends Activity {
 		}
 		*/
 		
-        Button startEncryptionButton = (Button) findViewById(R.id.chooseKeyForEncryptionButton);
-        Button startDecryptionButton = (Button) findViewById(R.id.startDecryptionButton);
-        Button startKeyManagementButton = (Button) findViewById(R.id.startKeyManagementButton);
+        	Button startEncryptionButton = (Button) findViewById(R.id.chooseKeyForEncryptionButton);
+        	Button startDecryptionButton = (Button) findViewById(R.id.startDecryptionButton);
+        	Button startKeyManagementButton = (Button) findViewById(R.id.startKeyManagementButton);
         
 
 		
-        //Listen for a button event
+	        //Listen for a button event
 		startEncryptionButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                Intent nextScreen = new Intent(getApplicationContext(), EnterPlaintextActivity.class); 
-                startActivity(nextScreen); 
-            }
-        });
+	            public void onClick(View arg0) {
+	                Intent nextScreen = new Intent(getApplicationContext(), EnterPlaintextActivity.class); 
+	                startActivity(nextScreen); 
+	            }
+	        });
 	}
 
 	@Override
