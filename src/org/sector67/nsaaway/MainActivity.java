@@ -29,6 +29,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.os.Build;
+import android.preference.PreferenceManager;
 
 /**
  * 
@@ -40,6 +41,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		setContentView(R.layout.activity_main);
 
 		/*
@@ -80,7 +82,8 @@ public class MainActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
-			return true;
+			Intent preferencesIntent = new Intent(this, SettingsActivity.class);
+			startActivity(preferencesIntent);			
 		}
 		return super.onOptionsItemSelected(item);
 	}

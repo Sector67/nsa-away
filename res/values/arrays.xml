@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string-array android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/key_eraser_entries" name="pref_key_eraser_entries">
+        <item android:id="@+id/eraser_entry_item1" android:layout_width="wrap_content" android:layout_height="wrap_content">org.sector67.otp.key.MultiPassSecureRandomEraser</item>
+        <item android:id="@+id/eraser_entry_item1" android:layout_width="wrap_content" android:layout_height="wrap_content">org.sector67.otp.key.MultiPassZeroingEraser</item>
+    </string-array>
+    <string-array android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/key_eraser_values" name="pref_key_eraser_values">
+        <item android:id="@+id/eraser_value_item1" android:layout_width="wrap_content" android:layout_height="wrap_content">org.sector67.otp.key.MultiPassSecureRandomEraser</item>
+        <item android:id="@+id/eraser_value_item2" android:layout_width="wrap_content" android:layout_height="wrap_content">org.sector67.otp.key.MultiPassZeroingEraser</item>
+    </string-array>    
+</resources>

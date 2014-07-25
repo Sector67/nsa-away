@@ -15,5 +15,8 @@
     <string name="display_ciphertext_header">Your encrypted message is shown below:</string>
     <string name="send_as_keystrokes_button">Send this message as keystrokes</string>
     <string name="encrypt_with_key_button">Encrypt the message with this key</string>
-    
+    <string name="pref_title">Preferences</string>
+    <string name="pref_summary">Configure your preferences</string>
+    <string name="pref_key_eraser">Key Eraser</string>
+    <string name="pref_key_eraser_default">org.sector67.otp.key.MultiPassZeroingEraser</string>
 </resources>
