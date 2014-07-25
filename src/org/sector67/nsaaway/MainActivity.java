@@ -63,6 +63,15 @@ public class MainActivity extends Activity {
 	                startActivity(nextScreen); 
 	            }
 	    });
+		
+		// Listen for a button click on the key-manager button
+		startKeyManagementButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View arg0) {
+				Intent nextScreen = new Intent(getApplicationContext(), KeyChooserActivity.class);
+				startActivity(nextScreen);
+			}
+		});
+		
 	}
 
 	@Override
