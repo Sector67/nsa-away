@@ -30,7 +30,8 @@ public class KeyManagerActivity extends Activity {
 					createTestKeys();
 					Toast.makeText(getApplicationContext(), "Test keys created", Toast.LENGTH_SHORT).show();
 				} catch (KeyException e) {
-					createAlert("Test Key Creation Error", "An error occured while creating test keys: " + e.getMessage());
+					Toast.makeText(getApplicationContext(), "Error creating test keys: " + e.getMessage(), Toast.LENGTH_LONG).show();
+					//createAlert("Test Key Creation Error", "An error occured while creating test keys: " + e.getMessage());
 				}
 			}
 		});
