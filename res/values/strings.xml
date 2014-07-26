@@ -7,6 +7,7 @@
     <string name="start_encryption_button">Encrypt a Message</string>
     <string name="start_decryption_button">Decrypt a Message</string>
     <string name="start_key_management_button">Key Management</string>
+    <string name="create_test_keys_button">Create Test Keys</string>
     <string name="enter_plaintext">Enter your plain text message:</string>
     <string name="choose_a_key_button">Pick a key</string>
     <string name="encrypt_button">Encrypt</string>
@@ -15,8 +16,30 @@
     <string name="display_ciphertext_header">Your encrypted message is shown below:</string>
     <string name="send_as_keystrokes_button">Send this message as keystrokes</string>
     <string name="encrypt_with_key_button">Encrypt the message with this key</string>
-    <string name="pref_title">Preferences</string>
-    <string name="pref_summary">Configure your preferences</string>
+
+    
+    <string name="pref_key_dir">Key Directory</string>
+    <string name="pref_key_dir_summary">The directory that contains your keys</string>
+    <string name="pref_key_dir_default"></string>
+
     <string name="pref_key_eraser">Key Eraser</string>
+    <string name="pref_key_eraser_summary">Choose the strategy for erasing used keys</string>
     <string name="pref_key_eraser_default">org.sector67.otp.key.MultiPassZeroingEraser</string>
+
+    <string name="pref_major_chunk_size">Major chunk size in bytes</string>
+    <string name="pref_major_chunk_size_summary">How many bytes in one major chunk of output</string>
+    <string name="pref_major_chunk_size_default">20</string>
+
+    <string name="pref_minor_chunk_size">Minor chunk size in bytes</string>
+    <string name="pref_minor_chunk_size_summary">How many bytes in one minor chunk of output</string>
+    <string name="pref_minor_chunk_size_default">1</string>
+
+    <string name="pref_major_chunk_separator">Major chunk separator</string>
+    <string name="pref_major_chunk_separator_summary">The string used to separate major chunks</string>
+    <string name="pref_major_chunk_separator_default">\n</string>    
+
+    <string name="pref_minor_chunk_separator">Minor chunk separator</string>
+    <string name="pref_minor_chunk_separator_summary">The string used to separate minor chunks</string>
+    <string name="pref_minor_chunk_separator_default">  </string>
+    
 </resources>

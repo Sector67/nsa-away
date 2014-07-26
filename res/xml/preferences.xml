@@ -1,16 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <CheckBoxPreference
-        android:key="pref_sync"
-        android:title="@string/pref_title"
-        android:summary="@string/pref_summary"
-        android:defaultValue="true" />
+   <EditTextPreference
+        android:key="pref_key_dir"  
+        android:title="@string/pref_key_dir"
+        android:summary="@string/pref_key_dir_summary"
+        android:dialogTitle="@string/pref_key_dir"
+        android:defaultValue="@string/pref_key_dir_default" />
    <ListPreference
-        android:dependency="pref_sync"
-        android:key="pref_syncConnectionType"
+        android:key="pref_key_eraser"
         android:title="@string/pref_key_eraser"
+        android:summary="@string/pref_key_eraser_summary"
         android:dialogTitle="@string/pref_key_eraser"
         android:entries="@array/pref_key_eraser_entries"
         android:entryValues="@array/pref_key_eraser_values"
         android:defaultValue="@string/pref_key_eraser_default" />
+   <EditTextPreference
+        android:key="pref_major_chunk_size"  
+        android:title="@string/pref_major_chunk_size"
+        android:summary="@string/pref_major_chunk_size_summary"
+        android:dialogTitle="@string/pref_major_chunk_size"
+        android:defaultValue="@string/pref_major_chunk_size_default"
+        android:numeric="integer" />
+   <EditTextPreference
+        android:key="pref_minor_chunk_size"  
+        android:title="@string/pref_minor_chunk_size"
+        android:summary="@string/pref_minor_chunk_size_summary"
+        android:dialogTitle="@string/pref_minor_chunk_size"
+        android:defaultValue="@string/pref_minor_chunk_size_default"
+        android:numeric="integer" />
+   <EditTextPreference
+        android:key="pref_major_chunk_separator"  
+        android:title="@string/pref_major_chunk_separator"
+        android:summary="@string/pref_major_chunk_separator_summary"
+        android:dialogTitle="@string/pref_major_chunk_separator"
+        android:defaultValue="@string/pref_major_chunk_separator_default" />
+   <EditTextPreference
+        android:key="pref_minor_chunk_separator"  
+        android:title="@string/pref_minor_chunk_separator"
+        android:summary="@string/pref_minor_chunk_separator_summary"
+        android:dialogTitle="@string/pref_minor_chunk_separator"
+        android:defaultValue="@string/pref_minor_chunk_separator_default" />
 </PreferenceScreen>

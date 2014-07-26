@@ -18,18 +18,16 @@
 package org.sector67.nsaaway;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.os.Build;
-import android.preference.PreferenceManager;
 
 /**
  * 
@@ -69,7 +67,7 @@ public class MainActivity extends Activity {
 		// Listen for a button click on the key-manager button
 		startKeyManagementButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View arg0) {
-				Intent nextScreen = new Intent(getApplicationContext(), KeyChooserActivity.class);
+				Intent nextScreen = new Intent(getApplicationContext(), KeyManagerActivity.class);
 				startActivity(nextScreen);
 			}
 		});

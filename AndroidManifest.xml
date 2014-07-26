@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -24,6 +26,7 @@
         </activity>
         <activity android:name=".SettingsActivity"></activity>
         <activity android:name=".EnterPlaintextActivity"></activity>
+        <activity android:name=".KeyManagerActivity"></activity>
         <activity android:name=".KeyChooserActivity"></activity>
         <activity android:name=".DisplayCiphertextActivity"></activity>
         </application>

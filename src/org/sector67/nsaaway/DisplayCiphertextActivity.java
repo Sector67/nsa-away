@@ -17,6 +17,13 @@
  */
 package org.sector67.nsaaway;
 
+import java.io.File;
+
+import org.sector67.nsaaway.file.FileUtils;
+import org.sector67.nsaaway.file.FileUtilsFactory;
+import org.sector67.otp.key.FileKeyStore;
+import org.sector67.otp.key.KeyException;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -50,7 +57,14 @@ public class DisplayCiphertextActivity extends Activity {
         	plaintext = i.getStringExtra("PLAINTEXT");
 
         	TextView ciphertext = (TextView)findViewById(R.id.ciphertext);
-        	ciphertext.setText("AA BB CC (" + plaintext + ")");
+        	String result = "AA BB CC (" + plaintext + ")";
+        	FileUtils fileUtils = FileUtilsFactory.getBuildAppropriateFileUtils(getApplicationContext());
+        	result = result + fileUtils.getBuild() + "\n";
+           	File[] dirs = fileUtils.getExternalStorageDirs(getApplicationContext());
+        	for (int j = 0; j < dirs.length; j++) {
+    			result = result +  "\n" + dirs[j].getAbsolutePath();
+    		}
+        	ciphertext.setText(result);
 		
         	//Listen for a button event
         	sendAsKeystrokes.setOnClickListener(new View.OnClickListener() {
@@ -60,4 +74,5 @@ public class DisplayCiphertextActivity extends Activity {
             		}
         	});
 	}
+
 }

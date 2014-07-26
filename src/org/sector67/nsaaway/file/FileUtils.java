@@ -15,27 +15,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this software.  If not, see <http://www.gnu.org/licenses/>. 
  */
-package org.sector67.nsaaway;
+package org.sector67.nsaaway.file;
 
-import android.os.Bundle;
-import android.preference.PreferenceActivity;
+import java.io.File;
+
+import android.content.Context;
 
 /**
+ * This interface provides an abstract way of accessing build-specific API implementations
+ * for file access.  For more details, see: 
+ * 
+ * http://stackoverflow.com/questions/11592820/writing-backwards-compatible-android-code
  * 
  * @author scott.hasse@gmail.com
  *
  */
-public class SettingsActivity extends PreferenceActivity {
-    public static final String KEY_PREF_SYNC_CONN = "pref_nsaAway";
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // Display the fragment as the main content.
-        getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new SettingsFragment())
-                .commit();
-    }
-
+public interface FileUtils {
+	public File[] getExternalStorageDirs(Context context);
+	public String getBuild();
 }
