@@ -27,6 +27,7 @@ import android.preference.PreferenceActivity;
  */
 public class SettingsActivity extends PreferenceActivity {
     public static final String KEY_PREF_SYNC_CONN = "pref_nsaAway";
+    public static final String KEY_PREF_KEYSTORE_PATH = "pref_key_dir";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

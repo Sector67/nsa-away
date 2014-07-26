@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -22,7 +23,7 @@ public class KeyManagerActivity extends Activity {
 		setContentView(R.layout.activity_key_manager);
 
         Button createTestKeys = (Button) findViewById(R.id.createTestKeysButton);
-
+        
 		// Listen for a button event
         createTestKeys.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View arg0) {
@@ -30,8 +31,8 @@ public class KeyManagerActivity extends Activity {
 					createTestKeys();
 					Toast.makeText(getApplicationContext(), "Test keys created", Toast.LENGTH_SHORT).show();
 				} catch (KeyException e) {
-					Toast.makeText(getApplicationContext(), "Error creating test keys: " + e.getMessage(), Toast.LENGTH_LONG).show();
-					//createAlert("Test Key Creation Error", "An error occured while creating test keys: " + e.getMessage());
+					//Toast.makeText(getApplicationContext(), "Error creating test keys: " + e.getMessage(), Toast.LENGTH_LONG).show();
+					createAlert("Test Key Creation Error", "An error occured while creating test keys: " + e.getMessage());
 				}
 			}
 		});
@@ -39,7 +40,7 @@ public class KeyManagerActivity extends Activity {
 	}
 	
 	private void createAlert(String title, String message) {
-		AlertDialog.Builder builder1 = new AlertDialog.Builder(getApplicationContext());
+		AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
 		//TODO: extract string
 		builder1.setTitle(title);
 		builder1.setMessage(message);
@@ -56,8 +57,12 @@ public class KeyManagerActivity extends Activity {
 	}
 	
 	private void createTestKeys() throws KeyException {
+		// /storage/extSdCard/Android/data/org.sector67.nsaaway/files/
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		String keyStorePath = sharedPref.getString(SettingsActivity.KEY_PREF_KEYSTORE_PATH, "");
 
-    	FileKeyStore store = new FileKeyStore("/storage/extSdCard/Android/data/org.sector67.nsaaway/files/");
+
+    	FileKeyStore store = new FileKeyStore(keyStorePath);
    		store.init();
    		store.deleteKey("encrypt-key");
    		store.deleteKey("decrypt-key");
