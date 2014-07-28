@@ -17,6 +17,8 @@
     <string name="send_as_keystrokes_button">Send this message as keystrokes</string>
     <string name="encrypt_with_key_button">Encrypt the message with this key</string>
 
+    <string name="title_choose_a_key">Choose a Key</string>
+    
     
     <string name="pref_key_dir">Key Directory</string>
     <string name="pref_key_dir_summary">The directory that contains your keys</string>
