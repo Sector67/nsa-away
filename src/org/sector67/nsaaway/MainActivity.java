@@ -36,6 +36,11 @@ import android.widget.Button;
  */
 public class MainActivity extends Activity {
 
+	//constants that various activities can use to reference passed data
+	public static String PLAINTEXT_KEY = "PLAINTEXT";
+	public static String CIPHERTEXT_KEY = "CIPHERTEXT";
+	public static String KEYNAME_KEY = "KEYNAME";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,6 +65,14 @@ public class MainActivity extends Activity {
 		startEncryptionButton.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View arg0) {
 	                Intent nextScreen = new Intent(getApplicationContext(), EnterPlaintextActivity.class); 
+	                startActivity(nextScreen); 
+	            }
+	    });
+		
+	    // Listen for a button click on the decryption button
+		startDecryptionButton.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View arg0) {
+	                Intent nextScreen = new Intent(getApplicationContext(), EnterCiphertextActivity.class); 
 	                startActivity(nextScreen); 
 	            }
 	    });

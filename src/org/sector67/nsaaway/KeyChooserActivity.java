@@ -39,7 +39,7 @@ public class KeyChooserActivity extends Activity {
 
 		Button encryptButton = (Button) findViewById(R.id.encryptButton);
 		Intent i = getIntent();
-		plaintext = i.getStringExtra("PLAINTEXT");
+		plaintext = i.getStringExtra(MainActivity.PLAINTEXT_KEY);
 
 		// Listen for a button event
 		encryptButton.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +47,7 @@ public class KeyChooserActivity extends Activity {
 				Intent nextScreen = new Intent(getApplicationContext(),
 						DisplayCiphertextActivity.class);
 
-				nextScreen.putExtra("PLAINTEXT", plaintext);
+				nextScreen.putExtra(MainActivity.PLAINTEXT_KEY, plaintext);
 				startActivity(nextScreen);
 			}
 		});

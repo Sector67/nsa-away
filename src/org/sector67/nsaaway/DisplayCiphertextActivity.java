@@ -21,8 +21,14 @@ import java.io.File;
 
 import org.sector67.nsaaway.file.FileUtils;
 import org.sector67.nsaaway.file.FileUtilsFactory;
+import org.sector67.nsaaway.key.KeyUtils;
+import org.sector67.otp.cipher.CipherException;
+import org.sector67.otp.cipher.OneTimePadCipher;
+import org.sector67.otp.encoding.EncodingException;
+import org.sector67.otp.encoding.SimpleBase16Encoder;
 import org.sector67.otp.key.FileKeyStore;
 import org.sector67.otp.key.KeyException;
+import org.sector67.otp.key.KeyStore;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -41,6 +47,7 @@ import android.widget.TextView;
 public class DisplayCiphertextActivity extends Activity {
 	
 	private String plaintext;
+	private String keyName;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +61,33 @@ public class DisplayCiphertextActivity extends Activity {
         	Button sendAsKeystrokes = (Button) findViewById(R.id.sendAsKeystrokesButton);
 		
         	Intent i = getIntent();
-        	plaintext = i.getStringExtra("PLAINTEXT");
+        	plaintext = i.getStringExtra(MainActivity.PLAINTEXT_KEY);
+        	keyName = i.getStringExtra(MainActivity.KEYNAME_KEY);
 
         	TextView ciphertext = (TextView)findViewById(R.id.ciphertext);
-        	String result = "AA BB CC (" + plaintext + ")";
+        	String result = "UNKNOWN";
+        	try {
+				KeyStore ks = KeyUtils.getKeyStore(getApplicationContext());
+				OneTimePadCipher cipher = new OneTimePadCipher(ks);
+				byte[] encrypted = cipher.encrypt(keyName, plaintext);
+				SimpleBase16Encoder encoder = new SimpleBase16Encoder();
+				encoder.setMinorChunkSeparator(" ");
+				result = encoder.encode(encrypted);
+			} catch (KeyException e) {
+				result = e.getMessage();
+			} catch (CipherException e) {
+				result = e.getMessage();
+			} catch (EncodingException e) {
+				result = e.getMessage();
+			}
+           	/*
         	FileUtils fileUtils = FileUtilsFactory.getBuildAppropriateFileUtils(getApplicationContext());
         	result = result + fileUtils.getBuild() + "\n";
-           	File[] dirs = fileUtils.getExternalStorageDirs(getApplicationContext());
+
         	for (int j = 0; j < dirs.length; j++) {
     			result = result +  "\n" + dirs[j].getAbsolutePath();
     		}
+    		*/
         	ciphertext.setText(result);
 		
         	//Listen for a button event

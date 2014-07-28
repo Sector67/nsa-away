@@ -31,33 +31,33 @@ import android.widget.TextView;
  * @author scott.hasse@gmail.com
  *
  */
-public class EnterPlaintextActivity extends Activity implements KeyChooserDialogFragment.KeyChooserDialogListener{
+public class EnterCiphertextActivity extends Activity implements KeyChooserDialogFragment.KeyChooserDialogListener{
 	
 	private String keyName;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_enter_plaintext);
+		setContentView(R.layout.activity_enter_ciphertext);
 				
-        	Button chooseKeyForEncryptionButton = (Button) findViewById(R.id.chooseKeyForEncryptionButton);
-        	Button encryptTextButton = (Button) findViewById(R.id.encryptTextButton);
+        	Button chooseKeyForDecryptionButton = (Button) findViewById(R.id.chooseKeyForDecryptionButton);
+        	Button decryptTextButton = (Button) findViewById(R.id.decryptTextButton);
 
 
-        	encryptTextButton.setOnClickListener(new View.OnClickListener() {
+        	decryptTextButton.setOnClickListener(new View.OnClickListener() {
             		public void onClick(View arg0) {
-                		Intent nextScreen = new Intent(getApplicationContext(), DisplayCiphertextActivity.class);
+                		Intent nextScreen = new Intent(getApplicationContext(), DisplayPlaintextActivity.class);
                 
-                		EditText txtInput = (EditText)findViewById(R.id.plaintextEditText);
-                		String plaintext = txtInput.getText().toString();
+                		EditText txtInput = (EditText)findViewById(R.id.ciphertextEditText);
+                		String ciphertext = txtInput.getText().toString();
                 
-                		nextScreen.putExtra(MainActivity.PLAINTEXT_KEY, plaintext);
+                		nextScreen.putExtra(MainActivity.CIPHERTEXT_KEY, ciphertext);
                 		nextScreen.putExtra(MainActivity.KEYNAME_KEY, keyName);
                 		startActivity(nextScreen); 
             		}
         	});
 
-        	chooseKeyForEncryptionButton.setOnClickListener(new View.OnClickListener() {
+        	chooseKeyForDecryptionButton.setOnClickListener(new View.OnClickListener() {
         		public void onClick(View arg0) {
         			showKeyChooserDialog();
         		}
@@ -76,7 +76,7 @@ public class EnterPlaintextActivity extends Activity implements KeyChooserDialog
      */
 	@Override
 	public void onKeyChoice(String name) {
-    	TextView keyString = (TextView)findViewById(R.id.bytesRemainingValue);
+    	TextView keyString = (TextView)findViewById(R.id.keyNameValue);
 		this.keyName = name;
 		keyString.setText(name);
 	}

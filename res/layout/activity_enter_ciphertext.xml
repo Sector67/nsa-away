@@ -8,28 +8,28 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/enter_plaintext" />
+        android:text="@string/title_enter_ciphertext" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/bytesRemainingText"
+            android:id="@+id/keyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/bytes_remaining" />
+            android:text="@string/title_key_name" />
 
         <TextView
-            android:id="@+id/bytesRemainingValue"
+            android:id="@+id/keyNameValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="&lt;bytes>" />
+            android:text="" />
 
     </LinearLayout>
 
     <EditText
-        android:id="@+id/plaintextEditText"
+        android:id="@+id/ciphertextEditText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -39,16 +39,16 @@
     </EditText>
 
     <Button
-        android:id="@+id/chooseKeyForEncryptionButton"
+        android:id="@+id/chooseKeyForDecryptionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:text="@string/choose_a_key_button" />
 
     <Button
-        android:id="@+id/encryptTextButton"
+        android:id="@+id/decryptTextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_encrypt_text" />
+        android:text="@string/button_decrypt_text" />
 
 </LinearLayout>

@@ -19,14 +19,17 @@ package org.sector67.nsaaway;
 
 import org.sector67.nsaaway.android.AlertUtils;
 import org.sector67.nsaaway.key.KeyUtils;
+
 import java.util.Iterator;
 import java.util.List;
+
 import org.sector67.otp.key.FileKeyStore;
 import org.sector67.otp.key.KeyException;
 import org.sector67.otp.key.KeyStore;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -105,4 +108,5 @@ public class KeyManagerActivity extends Activity {
 		store.generateKey("alice-key", 1000);
 		store.generateKey("bob-key", 1000);
 	}
+
 }

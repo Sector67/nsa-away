@@ -26,9 +26,11 @@
         </activity>
         <activity android:name=".SettingsActivity"></activity>
         <activity android:name=".EnterPlaintextActivity"></activity>
+        <activity android:name=".EnterCiphertextActivity"></activity>
         <activity android:name=".KeyManagerActivity"></activity>
         <activity android:name=".KeyChooserActivity"></activity>
         <activity android:name=".DisplayCiphertextActivity"></activity>
+        <activity android:name=".DisplayPlaintextActivity"></activity>
         </application>
 
 </manifest>

@@ -18,7 +18,16 @@
     <string name="send_as_keystrokes_button">Send this message as keystrokes</string>
     <string name="encrypt_with_key_button">Encrypt the message with this key</string>
 
+    <string name="button_encrypt_text">Encrypt This Message</string>
+    <string name="button_decrypt_text">Decrypt This Message</string>
+    
     <string name="title_choose_a_key">Choose a Key</string>
+
+    <string name="title_display_plaintext">The decrypted message</string>
+    <string name="button_erase_key_and_continue">Erase the used key and continue</string>
+    
+    <string name="title_enter_ciphertext">Enter your encrypted message</string>
+    <string name="title_key_name">Encryption key:</string>
     
     
     <string name="pref_key_dir">Key Directory</string>
