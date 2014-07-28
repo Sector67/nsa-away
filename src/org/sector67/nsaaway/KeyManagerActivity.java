@@ -19,6 +19,8 @@ package org.sector67.nsaaway;
 
 import org.sector67.nsaaway.android.AlertUtils;
 import org.sector67.nsaaway.key.KeyUtils;
+import java.util.Iterator;
+import java.util.List;
 import org.sector67.otp.key.FileKeyStore;
 import org.sector67.otp.key.KeyException;
 import org.sector67.otp.key.KeyStore;
@@ -47,27 +49,60 @@ public class KeyManagerActivity extends Activity {
 		setContentView(R.layout.activity_key_manager);
 
         Button createTestKeys = (Button) findViewById(R.id.createTestKeysButton);
+        Button listKeys = (Button) findViewById(R.id.listKeysButton);
         
 		// Listen for a button event
         createTestKeys.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View arg0) {
 				try {
 					createTestKeys();
-					Toast.makeText(getApplicationContext(), "Test keys created", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), getString(R.string.message_test_keys_created), Toast.LENGTH_SHORT).show();
+				} catch (KeyException e) {
+					//Toast.makeText(getApplicationContext(), "Error creating test keys: " + e.getMessage(), Toast.LENGTH_LONG).show();
+					AlertUtils.createAlert(getString(R.string.title_test_keys_creation_error), getString(R.string.message_test_keys_creation_error) + ": " + e.getMessage(), KeyManagerActivity.this).show();
+				}
+			}
+		});
+
+		// Listen for a button event
+        listKeys.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View arg0) {
+				try {
+					List<String> keys = listKeys();
+					String result = "";
+					for (Iterator<String> iterator = keys.iterator(); iterator.hasNext();) {
+						String key = (String) iterator.next();
+						result = result + key + "\n";
+					}
+					AlertUtils.createAlert(getString(R.string.title_key_list), result, KeyManagerActivity.this).show();
 				} catch (KeyException e) {
 					//Toast.makeText(getApplicationContext(), "Error creating test keys: " + e.getMessage(), Toast.LENGTH_LONG).show();
 					AlertUtils.createAlert("Test Key Creation Error", "An error occured while creating test keys: " + e.getMessage(), KeyManagerActivity.this).show();
 				}
 			}
 		});
-				
 	}
-	
+
+	private List<String> listKeys() throws KeyException {
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		String keyStorePath = sharedPref.getString(SettingsActivity.KEY_PREF_KEYSTORE_PATH, "");
+
+
+    	FileKeyStore store = new FileKeyStore(keyStorePath);
+   		store.init();
+   		List<String> keys = store.listKeys();
+   		return keys;
+	}
+
 	private void createTestKeys() throws KeyException {
 		KeyStore store = KeyUtils.getKeyStore(this);
    		store.deleteKey("encrypt-key");
    		store.deleteKey("decrypt-key");
+   		store.deleteKey("alice-key");
+   		store.deleteKey("bob-key");
 		store.generateKey("encrypt-key", 1000);
    		store.copyKey("encrypt-key", "decrypt-key");
+		store.generateKey("alice-key", 1000);
+		store.generateKey("bob-key", 1000);
 	}
 }

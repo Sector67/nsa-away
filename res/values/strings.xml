@@ -11,6 +11,7 @@
     <string name="enter_plaintext">Enter your plain text message:</string>
     <string name="choose_a_key_button">Pick a key</string>
     <string name="encrypt_button">Encrypt</string>
+    <string name="list_keys_button">List Keys</string>
     <string name="bytes_remaining">Bytes remaining:</string>
     <string name="choose_an_encryption_key_header">Choose a key to encrypt the message</string>
     <string name="display_ciphertext_header">Your encrypted message is shown below:</string>
@@ -43,5 +44,13 @@
     <string name="pref_minor_chunk_separator">Minor chunk separator</string>
     <string name="pref_minor_chunk_separator_summary">The string used to separate minor chunks</string>
     <string name="pref_minor_chunk_separator_default">  </string>
+
+    <string name="message_test_keys_created">The test keys have been created</string>
+    <string name="title_test_keys_creation_error">Test Key Creation Error</string>
+    <string name="message_test_keys_creation_error">An error occurred while creating test keys</string>
+
+    <string name="title_key_list">Key List</string>
+    <string name="title_key_list_error">Key List Error</string>
+    <string name="message_key_list_error">An error occurred while listing keys</string>
     
 </resources>
