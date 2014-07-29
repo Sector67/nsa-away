@@ -32,7 +32,7 @@
     
     <string name="pref_key_dir">Key Directory</string>
     <string name="pref_key_dir_summary">The directory that contains your keys</string>
-    <string name="pref_key_dir_default"></string>
+    <string name="pref_key_dir_default">/storage/extSdCard/Android/data/org.sector67.nsaaway/files</string>
 
     <string name="pref_key_eraser">Key Eraser</string>
     <string name="pref_key_eraser_summary">Choose the strategy for erasing used keys</string>
@@ -61,5 +61,10 @@
     <string name="title_key_list">Key List</string>
     <string name="title_key_list_error">Key List Error</string>
     <string name="message_key_list_error">An error occurred while listing keys</string>
+
+    <string name="label_enter_key_offset">Enter the key offset for this message:</string>
+    <string name="button_copy_to_clipboard">Copy to clipboard</string>
+    <string name="message_copied_to_clipboard">Your message has been copied to the clipboard</string>
+    
     
 </resources>

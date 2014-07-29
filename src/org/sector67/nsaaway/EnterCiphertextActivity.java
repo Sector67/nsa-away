@@ -50,9 +50,12 @@ public class EnterCiphertextActivity extends Activity implements KeyChooserDialo
                 
                 		EditText txtInput = (EditText)findViewById(R.id.ciphertextEditText);
                 		String ciphertext = txtInput.getText().toString();
+                		EditText offsetInput = (EditText)findViewById(R.id.keyOffsetEditText);
+                		Integer offset = Integer.parseInt(offsetInput.getText().toString());
                 
                 		nextScreen.putExtra(MainActivity.CIPHERTEXT_KEY, ciphertext);
                 		nextScreen.putExtra(MainActivity.KEYNAME_KEY, keyName);
+                		nextScreen.putExtra(MainActivity.OFFSET_KEY, offset);
                 		startActivity(nextScreen); 
             		}
         	});

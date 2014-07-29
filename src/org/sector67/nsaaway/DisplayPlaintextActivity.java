@@ -48,6 +48,7 @@ public class DisplayPlaintextActivity extends Activity {
 
 	private String ciphertext;
 	private String keyName;
+	private int offset;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,7 @@ public class DisplayPlaintextActivity extends Activity {
 		Intent i = getIntent();
 		ciphertext = i.getStringExtra(MainActivity.CIPHERTEXT_KEY);
 		keyName = i.getStringExtra(MainActivity.KEYNAME_KEY);
+		offset = i.getIntExtra(MainActivity.OFFSET_KEY, 0);
 
 		TextView plaintextView = (TextView) findViewById(R.id.displayPlaintext);
 		String result = "UNKNOWN";
@@ -73,7 +75,7 @@ public class DisplayPlaintextActivity extends Activity {
 			OneTimePadCipher cipher = new OneTimePadCipher(ks);
 			SimpleBase16Encoder encoder = new SimpleBase16Encoder();
 			byte[] decoded = encoder.decode(ciphertext);
-			result = cipher.decrypt(keyName, decoded);
+			result = cipher.decrypt(keyName, offset, decoded);
 		} catch (KeyException e) {
 			result = e.getMessage();
 		} catch (CipherException e) {

@@ -31,6 +31,9 @@ import org.sector67.otp.key.KeyException;
 import org.sector67.otp.key.KeyStore;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -38,6 +41,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 
@@ -48,6 +52,7 @@ public class DisplayCiphertextActivity extends Activity {
 	
 	private String plaintext;
 	private String keyName;
+	private String ciphertext;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,21 +63,25 @@ public class DisplayCiphertextActivity extends Activity {
 		
 		setContentView(R.layout.activity_display_ciphertext);
 		
-        	Button sendAsKeystrokes = (Button) findViewById(R.id.sendAsKeystrokesButton);
+    	Button sendAsKeystrokes = (Button) findViewById(R.id.sendAsKeystrokesButton);
+    	Button copyToKeyboardButton = (Button) findViewById(R.id.copyToKeyboardButton);
 		
         	Intent i = getIntent();
         	plaintext = i.getStringExtra(MainActivity.PLAINTEXT_KEY);
         	keyName = i.getStringExtra(MainActivity.KEYNAME_KEY);
 
-        	TextView ciphertext = (TextView)findViewById(R.id.ciphertext);
+        	TextView ciphertextView = (TextView)findViewById(R.id.ciphertext);
         	String result = "UNKNOWN";
         	try {
 				KeyStore ks = KeyUtils.getKeyStore(getApplicationContext());
 				OneTimePadCipher cipher = new OneTimePadCipher(ks);
+				int offset = ks.getCurrentOffset(keyName);
+				result = "OFFSET: " + offset + "\n";
 				byte[] encrypted = cipher.encrypt(keyName, plaintext);
 				SimpleBase16Encoder encoder = new SimpleBase16Encoder();
 				encoder.setMinorChunkSeparator(" ");
-				result = encoder.encode(encrypted);
+				ciphertext = encoder.encode(encrypted);
+				result = result + ciphertext;
 			} catch (KeyException e) {
 				result = e.getMessage();
 			} catch (CipherException e) {
@@ -88,7 +97,7 @@ public class DisplayCiphertextActivity extends Activity {
     			result = result +  "\n" + dirs[j].getAbsolutePath();
     		}
     		*/
-        	ciphertext.setText(result);
+        	ciphertextView.setText(result);
 		
         	//Listen for a button event
         	sendAsKeystrokes.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +106,19 @@ public class DisplayCiphertextActivity extends Activity {
                 		startActivity(nextScreen); 
             		}
         	});
+
+        	//Listen for a button event
+        	copyToKeyboardButton.setOnClickListener(new View.OnClickListener() {
+            		public void onClick(View arg0) {
+            			// Gets a handle to the clipboard service.
+            			ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    	ClipData clip = ClipData.newPlainText("simple text", ciphertext);
+                    	clipboard.setPrimaryClip(clip);
+    					Toast.makeText(getApplicationContext(), getString(R.string.message_copied_to_clipboard), Toast.LENGTH_SHORT).show();
+
+            		}
+        	});
+
 	}
 
 }

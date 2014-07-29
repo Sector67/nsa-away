@@ -37,9 +37,10 @@ import android.widget.Button;
 public class MainActivity extends Activity {
 
 	//constants that various activities can use to reference passed data
-	public static String PLAINTEXT_KEY = "PLAINTEXT";
-	public static String CIPHERTEXT_KEY = "CIPHERTEXT";
-	public static String KEYNAME_KEY = "KEYNAME";
+	public static final String PLAINTEXT_KEY = "PLAINTEXT";
+	public static final String CIPHERTEXT_KEY = "CIPHERTEXT";
+	public static final String KEYNAME_KEY = "KEYNAME";
+	public static final String OFFSET_KEY = "OFFSET";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
