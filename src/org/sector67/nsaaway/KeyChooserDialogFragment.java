@@ -60,8 +60,8 @@ public class KeyChooserDialogFragment extends DialogFragment {
 	        });
 	        return builder.create();
         } catch (KeyException e) {
-        	//display an error alert instead
-        	AlertDialog dialog = AlertUtils.createAlert("Key Error", e.getMessage(), getActivity().getApplicationContext());
+        	e.printStackTrace();//display an error alert instead
+        	AlertDialog dialog = AlertUtils.createAlert("Key Error", e.getMessage(), getActivity());
         	return dialog;
         }
     }
