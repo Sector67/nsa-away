@@ -47,37 +47,40 @@ import android.widget.Toast;
 /**
  * 
  * @author scott.hasse@gmail.com
- *
+ * 
  */
 public class DisplayCiphertextActivity extends Activity {
-	
+
 	private String plaintext;
 	private String keyName;
-	private String ciphertext;
+	private String ciphertext = null;
 	private int offset;
 	private int length;
 	private KeyStore ks;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-		String syncConnPref = sharedPref.getString(SettingsActivity.KEY_PREF_SYNC_CONN, "");
-		
-		setContentView(R.layout.activity_display_ciphertext);
-		
-    	Button sendAsKeystrokes = (Button) findViewById(R.id.sendAsKeystrokesButton);
-    	Button copyToKeyboardButton = (Button) findViewById(R.id.copyToKeyboardButton);
-    	Button eraseKeyAndContinueButton = (Button) findViewById(R.id.eraseKeyAndContinueButton);
-		
-        	Intent i = getIntent();
-        	plaintext = i.getStringExtra(MainActivity.PLAINTEXT_KEY);
-        	keyName = i.getStringExtra(MainActivity.KEYNAME_KEY);
 
-        	TextView ciphertextView = (TextView)findViewById(R.id.ciphertext);
-        	String result = "UNKNOWN";
-        	try {
+		SharedPreferences sharedPref = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		String syncConnPref = sharedPref.getString(
+				SettingsActivity.KEY_PREF_SYNC_CONN, "");
+
+		setContentView(R.layout.activity_display_ciphertext);
+
+		Button sendAsKeystrokes = (Button) findViewById(R.id.sendAsKeystrokesButton);
+		Button copyToKeyboardButton = (Button) findViewById(R.id.copyToKeyboardButton);
+		Button eraseKeyAndContinueButton = (Button) findViewById(R.id.eraseKeyAndContinueButton);
+
+		if (ciphertext == null) {
+			Intent i = getIntent();
+			plaintext = i.getStringExtra(MainActivity.PLAINTEXT_KEY);
+			keyName = i.getStringExtra(MainActivity.KEYNAME_KEY);
+
+			TextView ciphertextView = (TextView) findViewById(R.id.ciphertext);
+			String result = "UNKNOWN";
+			try {
 				ks = KeyUtils.getKeyStore(getApplicationContext());
 				OneTimePadCipher cipher = new OneTimePadCipher(ks);
 				offset = ks.getCurrentOffset(keyName);
@@ -95,50 +98,56 @@ public class DisplayCiphertextActivity extends Activity {
 			} catch (EncodingException e) {
 				result = e.getMessage();
 			}
-           	/*
-        	FileUtils fileUtils = FileUtilsFactory.getBuildAppropriateFileUtils(getApplicationContext());
-        	result = result + fileUtils.getBuild() + "\n";
+			ciphertextView.setText(result);
+		}
 
-        	for (int j = 0; j < dirs.length; j++) {
-    			result = result +  "\n" + dirs[j].getAbsolutePath();
-    		}
-    		*/
-        	ciphertextView.setText(result);
-		
-        	//Listen for a button event
-        	sendAsKeystrokes.setOnClickListener(new View.OnClickListener() {
-            		public void onClick(View arg0) {
-                		Intent nextScreen = new Intent(getApplicationContext(), MainActivity.class);
-                		startActivity(nextScreen); 
-            		}
-        	});
+		// Listen for a button event
+		sendAsKeystrokes.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View arg0) {
+				Intent nextScreen = new Intent(getApplicationContext(),
+						MainActivity.class);
+				startActivity(nextScreen);
+			}
+		});
 
-        	//Listen for a button event
-        	copyToKeyboardButton.setOnClickListener(new View.OnClickListener() {
-            		public void onClick(View arg0) {
-            			// Gets a handle to the clipboard service.
-            			ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                    	ClipData clip = ClipData.newPlainText("simple text", ciphertext);
-                    	clipboard.setPrimaryClip(clip);
-    					Toast.makeText(getApplicationContext(), getString(R.string.message_copied_to_clipboard), Toast.LENGTH_SHORT).show();
+		// Listen for a button event
+		copyToKeyboardButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View arg0) {
+				// Gets a handle to the clipboard service.
+				ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+				ClipData clip = ClipData
+						.newPlainText("simple text", ciphertext);
+				clipboard.setPrimaryClip(clip);
+				Toast.makeText(getApplicationContext(),
+						getString(R.string.message_copied_to_clipboard),
+						Toast.LENGTH_SHORT).show();
 
-            		}
-        	});
-        	
-        	//Listen for a button event
-        	eraseKeyAndContinueButton.setOnClickListener(new View.OnClickListener() {
-            		public void onClick(View arg0) {
-            			try {
+			}
+		});
+
+		// Listen for a button event
+		eraseKeyAndContinueButton
+				.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View arg0) {
+						try {
 							ks.eraseKeyBytes(keyName, offset, length);
-	    					Toast.makeText(getApplicationContext(), getString(R.string.message_key_bytes_erased), Toast.LENGTH_SHORT).show();
-	                		Intent nextScreen = new Intent(getApplicationContext(), MainActivity.class);
-	                		startActivity(nextScreen); 
-	                	} catch (KeyException e) {
-							AlertUtils.createAlert(getString(R.string.error_erasing_key_bytes), e.getMessage(), DisplayCiphertextActivity.this);
+							Toast.makeText(
+									getApplicationContext(),
+									getString(R.string.message_key_bytes_erased),
+									Toast.LENGTH_SHORT).show();
+							Intent nextScreen = new Intent(
+									getApplicationContext(), MainActivity.class);
+							startActivity(nextScreen);
+						} catch (KeyException e) {
+							AlertUtils
+									.createAlert(
+											getString(R.string.error_erasing_key_bytes),
+											e.getMessage(),
+											DisplayCiphertextActivity.this);
 						}
 
-            		}
-        	});
+					}
+				});
 
 	}
 
