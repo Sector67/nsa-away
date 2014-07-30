@@ -30,5 +30,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:text="@string/button_copy_to_clipboard" />
+
+    
+    <Button
+        android:id="@+id/eraseKeyAndContinueButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/button_erase_key_and_continue" />
     
 </LinearLayout>

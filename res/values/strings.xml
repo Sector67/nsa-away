@@ -24,7 +24,6 @@
     <string name="title_choose_a_key">Choose a Key</string>
 
     <string name="title_display_plaintext">The decrypted message</string>
-    <string name="button_erase_key_and_continue">Erase the used key and continue</string>
     
     <string name="title_enter_ciphertext">Enter your encrypted message</string>
     <string name="title_key_name">Encryption key:</string>
@@ -66,5 +65,8 @@
     <string name="button_copy_to_clipboard">Copy to clipboard</string>
     <string name="message_copied_to_clipboard">Your message has been copied to the clipboard</string>
     
+    <string name="message_key_bytes_erased">The key bytes used have been erased.</string>
+    <string name="button_erase_key_and_continue">Erase the key used and continue</string>
+    <string name="error_erasing_key_bytes">Erase the key used and continue</string>
     
 </resources>
