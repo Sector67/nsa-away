@@ -14,7 +14,7 @@
         android:id="@+id/ciphertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="A0 D5 12 58 C4 F9 5C"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button

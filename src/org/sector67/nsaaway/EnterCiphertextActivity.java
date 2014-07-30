@@ -20,7 +20,9 @@ package org.sector67.nsaaway;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,60 +31,68 @@ import android.widget.TextView;
 /**
  * 
  * @author scott.hasse@gmail.com
- *
+ * 
  */
-public class EnterCiphertextActivity extends Activity implements KeyChooserDialogFragment.KeyChooserDialogListener{
-	
+public class EnterCiphertextActivity extends Activity implements
+		KeyChooserDialogFragment.KeyChooserDialogListener {
+
 	private String keyName;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_enter_ciphertext);
-				
-        	Button chooseKeyForDecryptionButton = (Button) findViewById(R.id.chooseKeyForDecryptionButton);
-        	Button decryptTextButton = (Button) findViewById(R.id.decryptTextButton);
+		
+		SharedPreferences sharedPref = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		String defaultDecryptKey = sharedPref.getString(
+				SettingsActivity.KEY_PREF_DEFAULT_DECRYPT_KEY, "");
+		onKeyChoice(defaultDecryptKey);
+		
+		Button chooseKeyForDecryptionButton = (Button) findViewById(R.id.chooseKeyForDecryptionButton);
+		Button decryptTextButton = (Button) findViewById(R.id.decryptTextButton);
 
+		decryptTextButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View arg0) {
+				Intent nextScreen = new Intent(getApplicationContext(),
+						DisplayPlaintextActivity.class);
 
-        	decryptTextButton.setOnClickListener(new View.OnClickListener() {
-            		public void onClick(View arg0) {
-                		Intent nextScreen = new Intent(getApplicationContext(), DisplayPlaintextActivity.class);
-                
-                		EditText txtInput = (EditText)findViewById(R.id.ciphertextEditText);
-                		String ciphertext = txtInput.getText().toString();
-                		EditText offsetInput = (EditText)findViewById(R.id.keyOffsetEditText);
-                		Integer offset = Integer.parseInt(offsetInput.getText().toString());
-                
-                		nextScreen.putExtra(MainActivity.CIPHERTEXT_KEY, ciphertext);
-                		nextScreen.putExtra(MainActivity.KEYNAME_KEY, keyName);
-                		nextScreen.putExtra(MainActivity.OFFSET_KEY, offset);
-                		startActivity(nextScreen); 
-            		}
-        	});
+				EditText txtInput = (EditText) findViewById(R.id.ciphertextEditText);
+				String ciphertext = txtInput.getText().toString();
+				EditText offsetInput = (EditText) findViewById(R.id.keyOffsetEditText);
+				Integer offset = Integer.parseInt(offsetInput.getText()
+						.toString());
 
-        	chooseKeyForDecryptionButton.setOnClickListener(new View.OnClickListener() {
-        		public void onClick(View arg0) {
-        			showKeyChooserDialog();
-        		}
-    	});
-        	
+				nextScreen.putExtra(MainActivity.CIPHERTEXT_KEY, ciphertext);
+				nextScreen.putExtra(MainActivity.KEYNAME_KEY, keyName);
+				nextScreen.putExtra(MainActivity.OFFSET_KEY, offset);
+				startActivity(nextScreen);
+			}
+		});
+
+		chooseKeyForDecryptionButton
+				.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View arg0) {
+						showKeyChooserDialog();
+					}
+				});
+
 	}
-	
-    private void showKeyChooserDialog() {
-        // Create an instance of the dialog fragment and show it
-        DialogFragment dialog = new KeyChooserDialogFragment();
-        dialog.show(getFragmentManager(), "NoticeDialogFragment");
-    }
 
-    /*
-     * This method is called when a key is chosen
-     */
+	private void showKeyChooserDialog() {
+		// Create an instance of the dialog fragment and show it
+		DialogFragment dialog = new KeyChooserDialogFragment();
+		dialog.show(getFragmentManager(), "NoticeDialogFragment");
+	}
+
+	/*
+	 * This method is called when a key is chosen
+	 */
 	@Override
 	public void onKeyChoice(String name) {
-    	TextView keyString = (TextView)findViewById(R.id.keyNameValue);
+		TextView keyString = (TextView) findViewById(R.id.keyNameValue);
 		this.keyName = name;
 		keyString.setText(name);
 	}
-
 
 }
