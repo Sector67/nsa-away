@@ -17,17 +17,9 @@
  */
 package org.sector67.nsaaway;
 
-import java.io.File;
-
 import org.sector67.nsaaway.android.AlertUtils;
-import org.sector67.nsaaway.file.FileUtils;
-import org.sector67.nsaaway.file.FileUtilsFactory;
 import org.sector67.nsaaway.key.KeyUtils;
-import org.sector67.otp.cipher.CipherException;
-import org.sector67.otp.cipher.OneTimePadCipher;
-import org.sector67.otp.encoding.EncodingException;
-import org.sector67.otp.encoding.SimpleBase16Encoder;
-import org.sector67.otp.key.FileKeyStore;
+import org.sector67.otp.envelope.EnvelopeUtils;
 import org.sector67.otp.key.KeyException;
 import org.sector67.otp.key.KeyStore;
 
@@ -36,9 +28,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -53,6 +43,7 @@ public class DisplayCiphertextActivity extends Activity {
 
 	private String keyName;
 	private String ciphertext = null;
+	private String envelope = null;
 	private int offset;
 	private int length;
 
@@ -74,9 +65,12 @@ public class DisplayCiphertextActivity extends Activity {
 			keyName = i.getStringExtra(MainActivity.KEYNAME_KEY);
 
 			TextView ciphertextView = (TextView) findViewById(R.id.ciphertext);
-			String result = "UNKNOWN";
-			result = "OFFSET: " + offset + "\n";
+			String result = EnvelopeUtils.getEnvelopeHeader();
+			result = result + EnvelopeUtils.formatHeader("Offset", Integer.toString(offset));
+			result = result + EnvelopeUtils.getBodySeparator();
 			result = result + ciphertext;
+			result = result + EnvelopeUtils.getEnvelopeFooter();
+			envelope = result;
 			ciphertextView.setText(result);
 		}
 
@@ -95,7 +89,7 @@ public class DisplayCiphertextActivity extends Activity {
 				// Gets a handle to the clipboard service.
 				ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 				ClipData clip = ClipData
-						.newPlainText("simple text", ciphertext);
+						.newPlainText("simple text", envelope);
 				clipboard.setPrimaryClip(clip);
 				Toast.makeText(getApplicationContext(),
 						getString(R.string.message_copied_to_clipboard),

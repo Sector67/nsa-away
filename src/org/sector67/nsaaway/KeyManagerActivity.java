@@ -17,20 +17,16 @@
  */
 package org.sector67.nsaaway;
 
-import org.sector67.nsaaway.android.AlertUtils;
-import org.sector67.nsaaway.key.KeyUtils;
-
 import java.util.Iterator;
 import java.util.List;
 
+import org.sector67.nsaaway.android.AlertUtils;
+import org.sector67.nsaaway.key.KeyUtils;
 import org.sector67.otp.key.FileKeyStore;
 import org.sector67.otp.key.KeyException;
 import org.sector67.otp.key.KeyStore;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;

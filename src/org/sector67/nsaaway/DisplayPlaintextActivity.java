@@ -23,14 +23,14 @@ import org.sector67.otp.cipher.CipherException;
 import org.sector67.otp.cipher.OneTimePadCipher;
 import org.sector67.otp.encoding.EncodingException;
 import org.sector67.otp.encoding.SimpleBase16Encoder;
+import org.sector67.otp.envelope.EnvelopeUtils;
 import org.sector67.otp.key.KeyException;
 import org.sector67.otp.key.KeyStore;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -53,11 +53,6 @@ public class DisplayPlaintextActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		SharedPreferences sharedPref = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		String syncConnPref = sharedPref.getString(
-				SettingsActivity.KEY_PREF_SYNC_CONN, "");
-
 		setContentView(R.layout.activity_display_plaintext);
 
 		Button eraseKeyAndContinueButton = (Button) findViewById(R.id.eraseKeyAndContinueButton);
@@ -72,8 +67,11 @@ public class DisplayPlaintextActivity extends Activity {
 		try {
 			ks = KeyUtils.getKeyStore(getApplicationContext());
 			OneTimePadCipher cipher = new OneTimePadCipher(ks);
+    		String noEnvelope = EnvelopeUtils.getBody(ciphertext);
 			SimpleBase16Encoder encoder = new SimpleBase16Encoder();
-			byte[] decoded = encoder.decode(ciphertext);
+			Log.e("Debug envelope", noEnvelope);
+
+			byte[] decoded = encoder.decode(noEnvelope);
 			length = decoded.length;
 			result = cipher.decrypt(keyName, offset, decoded);
 		} catch (KeyException e) {

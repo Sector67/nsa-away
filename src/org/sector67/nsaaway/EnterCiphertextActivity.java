@@ -30,7 +30,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * 
@@ -96,6 +95,8 @@ public class EnterCiphertextActivity extends Activity implements
 						showKeyChooserDialog();
 					}
 				});
+		
+		//TODO: on ciphertext change, attempt to parse the offset from the envelope
 
 	}
 

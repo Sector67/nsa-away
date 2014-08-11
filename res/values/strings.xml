@@ -62,7 +62,7 @@
     <string name="title_key_list_error">Key List Error</string>
     <string name="message_key_list_error">An error occurred while listing keys</string>
 
-    <string name="label_enter_key_offset">Enter the key offset for this message:</string>
+    <string name="label_enter_key_offset">Manually enter the key offset for this message:</string>
     <string name="button_copy_to_clipboard">Copy to clipboard</string>
     <string name="message_copied_to_clipboard">Your message has been copied to the clipboard</string>
     

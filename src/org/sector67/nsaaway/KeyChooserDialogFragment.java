@@ -17,7 +17,6 @@
  */
 package org.sector67.nsaaway;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.sector67.nsaaway.android.AlertUtils;
