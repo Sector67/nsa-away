@@ -17,6 +17,15 @@
  */
 package org.sector67.nsaaway;
 
+import org.sector67.nsaaway.android.AlertUtils;
+import org.sector67.nsaaway.key.KeyUtils;
+import org.sector67.otp.cipher.CipherException;
+import org.sector67.otp.cipher.OneTimePadCipher;
+import org.sector67.otp.encoding.EncodingException;
+import org.sector67.otp.encoding.SimpleBase16Encoder;
+import org.sector67.otp.key.KeyException;
+import org.sector67.otp.key.KeyStore;
+
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -54,14 +63,50 @@ public class EnterPlaintextActivity extends Activity implements
 
 		encryptTextButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View arg0) {
+				String ciphertext = "";
+				int offset = -1;
+				int length = -1;
+				try {
+					EditText txtInput = (EditText) findViewById(R.id.plaintextEditText);
+					String plaintext = txtInput.getText().toString();
+					KeyStore ks = KeyUtils.getKeyStore(getApplicationContext());
+					OneTimePadCipher cipher = new OneTimePadCipher(ks);
+					offset = ks.getCurrentOffset(keyName);
+					byte[] encrypted = cipher.encrypt(keyName, plaintext);
+					length = encrypted.length;
+					SimpleBase16Encoder encoder = new SimpleBase16Encoder();
+					encoder.setMinorChunkSeparator(" ");
+					ciphertext = encoder.encode(encrypted);
+				} catch (KeyException e) {
+					AlertUtils
+					.createAlert(
+							getString(R.string.error_encrypting_message),
+							e.getMessage(),
+							EnterPlaintextActivity.this);
+					return;
+				} catch (CipherException e) {
+					AlertUtils
+					.createAlert(
+							getString(R.string.error_encrypting_message),
+							e.getMessage(),
+							EnterPlaintextActivity.this);
+					return;
+				} catch (EncodingException e) {
+					AlertUtils
+					.createAlert(
+							getString(R.string.error_encrypting_message),
+							e.getMessage(),
+							EnterPlaintextActivity.this);
+					return;
+				}
+
 				Intent nextScreen = new Intent(getApplicationContext(),
 						DisplayCiphertextActivity.class);
-
-				EditText txtInput = (EditText) findViewById(R.id.plaintextEditText);
-				String plaintext = txtInput.getText().toString();
-
-				nextScreen.putExtra(MainActivity.PLAINTEXT_KEY, plaintext);
+				nextScreen.putExtra(MainActivity.CIPHERTEXT_KEY, ciphertext);
+				nextScreen.putExtra(MainActivity.OFFSET_KEY, offset);
+				nextScreen.putExtra(MainActivity.LENGTH_KEY, length);
 				nextScreen.putExtra(MainActivity.KEYNAME_KEY, keyName);
+
 				startActivity(nextScreen);
 			}
 		});

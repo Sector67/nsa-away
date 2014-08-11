@@ -51,22 +51,15 @@ import android.widget.Toast;
  */
 public class DisplayCiphertextActivity extends Activity {
 
-	private String plaintext;
 	private String keyName;
 	private String ciphertext = null;
 	private int offset;
 	private int length;
-	private KeyStore ks;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		SharedPreferences sharedPref = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		String syncConnPref = sharedPref.getString(
-				SettingsActivity.KEY_PREF_SYNC_CONN, "");
-
+		
 		setContentView(R.layout.activity_display_ciphertext);
 
 		Button sendAsKeystrokes = (Button) findViewById(R.id.sendAsKeystrokesButton);
@@ -75,29 +68,15 @@ public class DisplayCiphertextActivity extends Activity {
 
 		if (ciphertext == null) {
 			Intent i = getIntent();
-			plaintext = i.getStringExtra(MainActivity.PLAINTEXT_KEY);
+			ciphertext = i.getStringExtra(MainActivity.CIPHERTEXT_KEY);
+			length = i.getIntExtra(MainActivity.LENGTH_KEY, -1);
+			offset = i.getIntExtra(MainActivity.OFFSET_KEY, -1);
 			keyName = i.getStringExtra(MainActivity.KEYNAME_KEY);
 
 			TextView ciphertextView = (TextView) findViewById(R.id.ciphertext);
 			String result = "UNKNOWN";
-			try {
-				ks = KeyUtils.getKeyStore(getApplicationContext());
-				OneTimePadCipher cipher = new OneTimePadCipher(ks);
-				offset = ks.getCurrentOffset(keyName);
-				result = "OFFSET: " + offset + "\n";
-				byte[] encrypted = cipher.encrypt(keyName, plaintext);
-				length = encrypted.length;
-				SimpleBase16Encoder encoder = new SimpleBase16Encoder();
-				encoder.setMinorChunkSeparator(" ");
-				ciphertext = encoder.encode(encrypted);
-				result = result + ciphertext;
-			} catch (KeyException e) {
-				result = e.getMessage();
-			} catch (CipherException e) {
-				result = e.getMessage();
-			} catch (EncodingException e) {
-				result = e.getMessage();
-			}
+			result = "OFFSET: " + offset + "\n";
+			result = result + ciphertext;
 			ciphertextView.setText(result);
 		}
 
@@ -130,6 +109,7 @@ public class DisplayCiphertextActivity extends Activity {
 				.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View arg0) {
 						try {
+							KeyStore ks = KeyUtils.getKeyStore(getApplicationContext());
 							ks.eraseKeyBytes(keyName, offset, length);
 							Toast.makeText(
 									getApplicationContext(),
