@@ -47,7 +47,13 @@ public class EnterCiphertextActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_enter_ciphertext);
 
-				
+		
+			SharedPreferences sharedPref = PreferenceManager
+					.getDefaultSharedPreferences(this);
+			String defaultDecryptKey = sharedPref.getString(
+					SettingsActivity.KEY_PREF_DEFAULT_DECRYPT_KEY, "");
+			onKeyChoice(defaultDecryptKey);
+
         	Button chooseKeyForDecryptionButton = (Button) findViewById(R.id.chooseKeyForDecryptionButton);
         	Button decryptTextButton = (Button) findViewById(R.id.decryptTextButton);
         	Button buttonPasteFromClipboard = (Button) findViewById(R.id.buttonPasteFromClipboard);
