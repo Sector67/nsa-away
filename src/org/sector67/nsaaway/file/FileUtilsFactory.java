@@ -32,7 +32,7 @@ import android.os.Build;
 public class FileUtilsFactory {
     public static FileUtils getBuildAppropriateFileUtils(Context context) {
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if (android.os.Build.VERSION.SDK_INT >= 19) {
             return new KitKatFileUtils();
         } else {
             return new LegacyFileUtils();

@@ -19,12 +19,16 @@ package org.sector67.nsaaway;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 
@@ -42,7 +46,7 @@ public class EnterCiphertextActivity extends Activity implements KeyChooserDialo
 				
         	Button chooseKeyForDecryptionButton = (Button) findViewById(R.id.chooseKeyForDecryptionButton);
         	Button decryptTextButton = (Button) findViewById(R.id.decryptTextButton);
-
+        	Button buttonPasteFromClipboard = (Button) findViewById(R.id.buttonPasteFromClipboard);
 
         	decryptTextButton.setOnClickListener(new View.OnClickListener() {
             		public void onClick(View arg0) {
@@ -59,6 +63,22 @@ public class EnterCiphertextActivity extends Activity implements KeyChooserDialo
                 		startActivity(nextScreen); 
             		}
         	});
+        	
+        	//Listen for a button event
+        	buttonPasteFromClipboard.setOnClickListener(new View.OnClickListener() {
+            		public void onClick(View arg0) {
+            			// Gets a handle to the clipboard service.
+            			ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    	ClipData clip = clipboard.getPrimaryClip();
+                    	
+                    
+            			EditText txtInput = (EditText)findViewById(R.id.ciphertextEditText);
+            			txtInput.setText(clip.getItemAt(0).getText().toString());
+    					//Toast.makeText(getApplicationContext(), getString(R.string.message_copied_to_clipboard), Toast.LENGTH_SHORT).show();
+
+            		}
+        	});
+        	
 
         	chooseKeyForDecryptionButton.setOnClickListener(new View.OnClickListener() {
         		public void onClick(View arg0) {

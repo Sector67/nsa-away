@@ -21,6 +21,7 @@
     <string name="button_encrypt_text">Encrypt This Message</string>
     <string name="button_decrypt_text">Decrypt This Message</string>
     
+    
     <string name="title_choose_a_key">Choose a Key</string>
 
     <string name="title_display_plaintext">The decrypted message</string>
@@ -65,6 +66,9 @@
     <string name="label_enter_key_offset">Enter the key offset for this message:</string>
     <string name="button_copy_to_clipboard">Copy to clipboard</string>
     <string name="message_copied_to_clipboard">Your message has been copied to the clipboard</string>
+    
+    <string name="button_paste_from_clipboard">Paste from clipboard</string>
+    
     
     
 </resources>
