@@ -14,7 +14,8 @@
         android:id="@+id/ciphertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="A0 D5 12 58 C4 F9 5C"
+        android:text=""
+        android:typeface="monospace"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
@@ -30,5 +31,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:text="@string/button_copy_to_clipboard" />
+
+    
+    <Button
+        android:id="@+id/eraseKeyAndContinueButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/button_erase_key_and_continue" />
     
 </LinearLayout>

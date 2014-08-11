@@ -6,6 +6,18 @@
         android:summary="@string/pref_key_dir_summary"
         android:dialogTitle="@string/pref_key_dir"
         android:defaultValue="@string/pref_key_dir_default" />
+   <EditTextPreference
+        android:key="pref_default_encrypt_key_name"  
+        android:title="@string/pref_default_encrypt_key_name"
+        android:summary="@string/pref_default_encrypt_key_name_summary"
+        android:dialogTitle="@string/pref_default_encrypt_key_name"
+        android:defaultValue="@string/pref_default_encrypt_key_name_value" />
+   <EditTextPreference
+        android:key="pref_default_decrypt_key_name"  
+        android:title="@string/pref_default_decrypt_key_name"
+        android:summary="@string/pref_default_decrypt_key_name_summary"
+        android:dialogTitle="@string/pref_default_decrypt_key_name"
+        android:defaultValue="@string/pref_default_decrypt_key_name_value" />
    <ListPreference
         android:key="pref_key_eraser"
         android:title="@string/pref_key_eraser"

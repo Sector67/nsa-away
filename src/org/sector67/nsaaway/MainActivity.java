@@ -41,6 +41,7 @@ public class MainActivity extends Activity {
 	public static final String CIPHERTEXT_KEY = "CIPHERTEXT";
 	public static final String KEYNAME_KEY = "KEYNAME";
 	public static final String OFFSET_KEY = "OFFSET";
+	public static final String LENGTH_KEY = "LENGTH";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

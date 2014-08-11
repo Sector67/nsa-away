@@ -17,16 +17,12 @@
  */
 package org.sector67.nsaaway;
 
-import java.io.File;
-
-import org.sector67.nsaaway.file.FileUtils;
-import org.sector67.nsaaway.file.FileUtilsFactory;
+import org.sector67.nsaaway.android.AlertUtils;
 import org.sector67.nsaaway.key.KeyUtils;
 import org.sector67.otp.cipher.CipherException;
 import org.sector67.otp.cipher.OneTimePadCipher;
 import org.sector67.otp.encoding.EncodingException;
 import org.sector67.otp.encoding.SimpleBase16Encoder;
-import org.sector67.otp.key.FileKeyStore;
 import org.sector67.otp.key.KeyException;
 import org.sector67.otp.key.KeyStore;
 
@@ -38,6 +34,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 
@@ -49,6 +46,8 @@ public class DisplayPlaintextActivity extends Activity {
 	private String ciphertext;
 	private String keyName;
 	private int offset;
+	private int length;
+	private KeyStore ks;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +70,11 @@ public class DisplayPlaintextActivity extends Activity {
 		TextView plaintextView = (TextView) findViewById(R.id.displayPlaintext);
 		String result = "UNKNOWN";
 		try {
-			KeyStore ks = KeyUtils.getKeyStore(getApplicationContext());
+			ks = KeyUtils.getKeyStore(getApplicationContext());
 			OneTimePadCipher cipher = new OneTimePadCipher(ks);
 			SimpleBase16Encoder encoder = new SimpleBase16Encoder();
 			byte[] decoded = encoder.decode(ciphertext);
+			length = decoded.length;
 			result = cipher.decrypt(keyName, offset, decoded);
 		} catch (KeyException e) {
 			result = e.getMessage();
@@ -93,15 +93,20 @@ public class DisplayPlaintextActivity extends Activity {
 		 */
 		plaintextView.setText(result);
 
-		// Listen for a button event
-		eraseKeyAndContinueButton
-				.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View arg0) {
-						Intent nextScreen = new Intent(getApplicationContext(),
-								MainActivity.class);
-						startActivity(nextScreen);
+    	//Listen for a button event
+    	eraseKeyAndContinueButton.setOnClickListener(new View.OnClickListener() {
+        		public void onClick(View arg0) {
+        			try {
+						ks.eraseKeyBytes(keyName, offset, length);
+    					Toast.makeText(getApplicationContext(), getString(R.string.message_key_bytes_erased), Toast.LENGTH_SHORT).show();
+                		Intent nextScreen = new Intent(getApplicationContext(), MainActivity.class);
+                		startActivity(nextScreen); 
+                	} catch (KeyException e) {
+						AlertUtils.createAlert(getString(R.string.error_erasing_key_bytes), e.getMessage(), DisplayPlaintextActivity.this);
 					}
-				});
+
+        		}
+    	});
 	}
 
 }
