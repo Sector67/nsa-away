@@ -60,6 +60,7 @@ public class MainActivity extends Activity {
         Button startEncryptionButton = (Button) findViewById(R.id.chooseKeyForEncryptionButton);
         Button startDecryptionButton = (Button) findViewById(R.id.startDecryptionButton);
         Button startKeyManagementButton = (Button) findViewById(R.id.startKeyManagementButton);
+        Button startOCRButton = (Button) findViewById(R.id.startOCRButton);
         
 
 		
@@ -86,7 +87,14 @@ public class MainActivity extends Activity {
 				startActivity(nextScreen);
 			}
 		});
-		
+
+		// Listen for a button click on the key-manager button
+		startOCRButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View arg0) {
+				Intent nextScreen = new Intent(getApplicationContext(), SimpleOCRActivity.class);
+				startActivity(nextScreen);
+			}
+		});
 	}
 
 	@Override

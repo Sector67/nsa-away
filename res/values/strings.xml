@@ -20,7 +20,11 @@
 
     <string name="button_encrypt_text">Encrypt This Message</string>
     <string name="button_decrypt_text">Decrypt This Message</string>
-    
+
+    <string name="button_simple_ocr_text">OCR</string>
+    <string name="text_ocr_lable">OCRed Text will appear here</string>
+
+    <string name="button_start_ocr">OCR an encrypted message</string>
     
     <string name="title_choose_a_key">Choose a Key</string>
 
