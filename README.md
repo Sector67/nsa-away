@@ -8,6 +8,9 @@ NSA Away Android application repository for the Hackaday prize
  - clone the repo
  - from within the Android SDK:
    - File &raquo; Import &raquo; Existing Projects into Workspace
+ - Clone and import the one-time-pad-lirbary repo
+ - Build and import the tess-two Android Tesseract library project (https://github.com/rmtheis/tess-two)
+ - You may have to update the library project reference in your nsa-away project (in eclipse project, properties, android) depending on the platform you are running
  - build and run!
 
  
