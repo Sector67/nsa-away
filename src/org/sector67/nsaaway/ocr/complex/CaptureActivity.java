@@ -63,8 +63,7 @@ import android.widget.Toast;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
 
-import org.sector67.nsaaway.DisplayCiphertextActivity;
-import org.sector67.nsaaway.EnterPlaintextActivity;
+import org.sector67.nsaaway.EnterCiphertextActivity;
 import org.sector67.nsaaway.MainActivity;
 import org.sector67.nsaaway.R;
 import org.sector67.nsaaway.ocr.complex.camera.CameraManager;
@@ -238,7 +237,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
 	complexOcrContinueButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                Intent nextScreen = new Intent(getApplicationContext(), EnterPlaintextActivity.class);
+                Intent nextScreen = new Intent(getApplicationContext(), EnterCiphertextActivity.class);
 				nextScreen.putExtra(MainActivity.INCOMING_TEXT_KEY, ocrResultView.getText());				
                 startActivity(nextScreen); 
             }
