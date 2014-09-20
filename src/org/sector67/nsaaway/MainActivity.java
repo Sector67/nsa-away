@@ -17,6 +17,8 @@
  */
 package org.sector67.nsaaway;
 
+import org.sector67.nsaaway.ocr.complex.CaptureActivity;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -42,6 +44,7 @@ public class MainActivity extends Activity {
 	public static final String KEYNAME_KEY = "KEYNAME";
 	public static final String OFFSET_KEY = "OFFSET";
 	public static final String LENGTH_KEY = "LENGTH";
+	public static final String INCOMING_TEXT_KEY = "INCOMING_TEXT";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ public class MainActivity extends Activity {
         Button startDecryptionButton = (Button) findViewById(R.id.startDecryptionButton);
         Button startKeyManagementButton = (Button) findViewById(R.id.startKeyManagementButton);
         Button startOCRButton = (Button) findViewById(R.id.startOCRButton);
+        Button startComplexOCRButton = (Button) findViewById(R.id.startComplexOCRButton);
         
 
 		
@@ -95,8 +99,18 @@ public class MainActivity extends Activity {
 				startActivity(nextScreen);
 			}
 		});
+		
+		// Listen for a button click on the key-manager button
+		startComplexOCRButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View arg0) {
+				Intent nextScreen = new Intent(getApplicationContext(), CaptureActivity.class);
+				startActivity(nextScreen);
+			}
+		});
+		
 	}
 
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 

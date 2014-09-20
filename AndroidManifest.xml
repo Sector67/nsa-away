@@ -18,7 +18,8 @@
     <uses-feature
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
-    
+  	<uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+  	<uses-feature android:name="android.hardware.screen.landscape"/>    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -41,6 +42,9 @@
         <activity android:name=".DisplayCiphertextActivity"></activity>
         <activity android:name=".DisplayPlaintextActivity"></activity>
         <activity android:name=".SimpleOCRActivity"></activity>
+        <activity android:name="org.sector67.nsaaway.ocr.complex.CaptureActivity"></activity>
+        <activity android:name="org.sector67.nsaaway.ocr.complex.HelpActivity"></activity>
+        
         </application>
 
 </manifest>

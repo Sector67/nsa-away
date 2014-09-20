@@ -34,10 +34,19 @@
         android:text="@string/button_start_ocr" />
     
     <Button
-        android:id="@+id/startKeyManagementButton"
+        android:id="@+id/startComplexOCRButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/startOCRButton"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:text="@string/button_start_complex_ocr" /> 
+           
+    <Button
+        android:id="@+id/startKeyManagementButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/startComplexOCRButton"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:text="@string/start_key_management_button" />

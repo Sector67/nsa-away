@@ -46,6 +46,7 @@ public class EnterPlaintextActivity extends Activity implements
 		KeyChooserDialogFragment.KeyChooserDialogListener {
 
 	private String keyName;
+	private String incomingText = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,14 @@ public class EnterPlaintextActivity extends Activity implements
 		String defaultEncryptKey = sharedPref.getString(
 				SettingsActivity.KEY_PREF_DEFAULT_ENCRYPT_KEY, "");
 		onKeyChoice(defaultEncryptKey);
-		
+
+		if (incomingText == null) {
+			Intent i = getIntent();
+			incomingText = i.getStringExtra(MainActivity.INCOMING_TEXT_KEY);
+			EditText txtInput = (EditText) findViewById(R.id.plaintextEditText);
+			txtInput.setText(incomingText);
+		}
+
 		Button chooseKeyForEncryptionButton = (Button) findViewById(R.id.chooseKeyForEncryptionButton);
 		Button encryptTextButton = (Button) findViewById(R.id.encryptTextButton);
 
