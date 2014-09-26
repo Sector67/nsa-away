@@ -48,7 +48,7 @@
 
     <string name="pref_major_chunk_size">Major chunk size in bytes</string>
     <string name="pref_major_chunk_size_summary">How many bytes in one major chunk of output</string>
-    <string name="pref_major_chunk_size_default">20</string>
+    <string name="pref_major_chunk_size_default">12</string>
 
     <string name="pref_minor_chunk_size">Minor chunk size in bytes</string>
     <string name="pref_minor_chunk_size_summary">How many bytes in one minor chunk of output</string>

@@ -77,6 +77,8 @@ public class EnterPlaintextActivity extends Activity implements
 					SimpleBase16Encoder encoder = new SimpleBase16Encoder();
 					encoder.setMinorChunkSeparator(" ");
 					ciphertext = encoder.encode(encrypted);
+					//clear the text input so navigating back cannot recover it
+					txtInput.setText("");
 				} catch (KeyException e) {
 					AlertUtils
 					.createAlert(
@@ -106,6 +108,8 @@ public class EnterPlaintextActivity extends Activity implements
 				nextScreen.putExtra(MainActivity.OFFSET_KEY, offset);
 				nextScreen.putExtra(MainActivity.LENGTH_KEY, length);
 				nextScreen.putExtra(MainActivity.KEYNAME_KEY, keyName);
+				
+				
 
 				startActivity(nextScreen);
 			}

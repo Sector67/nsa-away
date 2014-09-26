@@ -397,7 +397,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     if (baseApi != null) {
       baseApi.setPageSegMode(pageSegmentationMode);
       baseApi.setVariable(TessBaseAPI.VAR_CHAR_BLACKLIST, characterBlacklist);
-      baseApi.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, characterWhitelist);
+      baseApi.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, "ABCDEFabcdef0123456789");
     }
 
     if (hasSurface) {
@@ -735,7 +735,13 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     TextView sourceLanguageTextView = (TextView) findViewById(R.id.source_language_text_view);
     sourceLanguageTextView.setText(sourceLanguageReadable);
     TextView ocrResultTextView = (TextView) findViewById(R.id.ocr_result_text_view);
-    ocrResultTextView.setText(ocrResult.getText());
+    String result = ocrResult.getText();
+    //TODO sph temporary to fix certain OCR issues
+    result = result.replace('t', 'f');
+    result = result.replace('l', '1');
+    result = result.replace('h', 'b');
+    result = result.replace('?', '7');
+    ocrResultTextView.setText(result);
     // Crudely scale betweeen 22 and 32 -- bigger font for shorter text
     int scaledSize = Math.max(22, 32 - ocrResult.getText().length() / 4);
     ocrResultTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, scaledSize);
@@ -1099,7 +1105,8 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
       
       // Retrieve from preferences, and set in this Activity, the character blacklist and whitelist
       characterBlacklist = OcrCharacterHelper.getBlacklist(prefs, sourceLanguageCodeOcr);
-      characterWhitelist = OcrCharacterHelper.getWhitelist(prefs, sourceLanguageCodeOcr);
+      //characterWhitelist = OcrCharacterHelper.getWhitelist(prefs, sourceLanguageCodeOcr);
+      characterWhitelist = "ABCDEFabcdef0123456789";
       
       prefs.registerOnSharedPreferenceChangeListener(listener);
       

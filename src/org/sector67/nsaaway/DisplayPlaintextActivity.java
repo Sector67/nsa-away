@@ -95,6 +95,9 @@ public class DisplayPlaintextActivity extends Activity {
     	eraseKeyAndContinueButton.setOnClickListener(new View.OnClickListener() {
         		public void onClick(View arg0) {
         			try {
+        				//clear the text view so navigating back will not display the message
+        				TextView plaintextView = (TextView) findViewById(R.id.displayPlaintext);
+        				plaintextView.setText("");
 						ks.eraseKeyBytes(keyName, offset, length);
     					Toast.makeText(getApplicationContext(), getString(R.string.message_key_bytes_erased), Toast.LENGTH_SHORT).show();
                 		Intent nextScreen = new Intent(getApplicationContext(), MainActivity.class);

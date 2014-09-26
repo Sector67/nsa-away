@@ -214,7 +214,8 @@ public class OcrCharacterHelper {
     else if (languageCode.equals("ces")) { return ""; } // Czech
     else if (languageCode.equals("dan")) { return ""; } // Danish
     else if (languageCode.equals("nld")) { return ""; } // Dutch
-    else if (languageCode.equals("eng")) { return "!?@#$%&*()<>_-+=/.,:;'\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; } // English
+//    else if (languageCode.equals("eng")) { return "!?@#$%&*()<>_-+=/.,:;'\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; } // English
+    else if (languageCode.equals("eng")) { return "ABCDEFabcdef0123456789"; } // English
     else if (languageCode.equals("est")) { return ""; } // Estonian
     else if (languageCode.equals("fin")) { return ""; } // Finnish
     else if (languageCode.equals("fra")) { return ""; } // French

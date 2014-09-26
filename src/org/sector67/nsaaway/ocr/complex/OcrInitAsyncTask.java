@@ -230,7 +230,10 @@ final class OcrInitAsyncTask extends AsyncTask<String, String, Boolean> {
     }
 
     // Initialize the OCR engine
+    baseApi.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST,"ABCDEFabcdef0123456789");
     if (baseApi.init(destinationDirBase + File.separator, languageCode, ocrEngineMode)) {
+    	//set character whitelist
+
       return installSuccess && osdInstallSuccess;
     }
     return false;
