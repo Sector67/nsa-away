@@ -396,7 +396,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     }
     if (baseApi != null) {
       baseApi.setPageSegMode(pageSegmentationMode);
-      baseApi.setVariable(TessBaseAPI.VAR_CHAR_BLACKLIST, characterBlacklist);
+      //baseApi.setVariable(TessBaseAPI.VAR_CHAR_BLACKLIST, characterBlacklist);
       baseApi.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, "ABCDEFabcdef0123456789");
     }
 

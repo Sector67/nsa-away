@@ -144,7 +144,10 @@ final class DecodeHandler extends Handler {
     String textResult;
     long start = System.currentTimeMillis();
 
-    try {     
+    try {
+    	//TODO: sph figure out if this is necessary
+      baseApi.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, "abcdef0123456789");
+
       baseApi.setImage(ReadFile.readBitmap(bitmap));
       textResult = baseApi.getUTF8Text();
       timeRequired = System.currentTimeMillis() - start;

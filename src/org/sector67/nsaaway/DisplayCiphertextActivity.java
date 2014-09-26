@@ -63,12 +63,14 @@ public class DisplayCiphertextActivity extends Activity {
 			length = i.getIntExtra(MainActivity.LENGTH_KEY, -1);
 			offset = i.getIntExtra(MainActivity.OFFSET_KEY, -1);
 			keyName = i.getStringExtra(MainActivity.KEYNAME_KEY);
-
+			//TODO: move the new lines to a configuration or the EnvelopeUtils
 			TextView ciphertextView = (TextView) findViewById(R.id.ciphertext);
 			String result = EnvelopeUtils.getEnvelopeHeader();
 			result = result + EnvelopeUtils.formatHeader("Offset", Integer.toString(offset));
 			result = result + EnvelopeUtils.getBodySeparator();
+			result = result + "\n";
 			result = result + ciphertext;
+			result = result + "\n";
 			result = result + EnvelopeUtils.getEnvelopeFooter();
 			envelope = result;
 			ciphertextView.setText(result);

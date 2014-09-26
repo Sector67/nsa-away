@@ -56,6 +56,7 @@ public class EnterPlaintextActivity extends Activity implements
 				.getDefaultSharedPreferences(this);
 		String defaultEncryptKey = sharedPref.getString(
 				SettingsActivity.KEY_PREF_DEFAULT_ENCRYPT_KEY, "");
+
 		onKeyChoice(defaultEncryptKey);
 
 		Button chooseKeyForEncryptionButton = (Button) findViewById(R.id.chooseKeyForEncryptionButton);
@@ -75,8 +76,14 @@ public class EnterPlaintextActivity extends Activity implements
 					byte[] encrypted = cipher.encrypt(keyName, plaintext);
 					length = encrypted.length;
 					SimpleBase16Encoder encoder = new SimpleBase16Encoder();
+					//TODO: get from prefs
+					encoder.setMajorChunkSeparator("\n");
 					encoder.setMinorChunkSeparator(" ");
+					encoder.setMajorChunkSize(6);
+					encoder.setMinorChunkSize(1);
 					ciphertext = encoder.encode(encrypted);
+					//TODO: sph upper/lower case configurable?  or entire alphabet configurable?
+					ciphertext = ciphertext.toLowerCase();
 					//clear the text input so navigating back cannot recover it
 					txtInput.setText("");
 				} catch (KeyException e) {
