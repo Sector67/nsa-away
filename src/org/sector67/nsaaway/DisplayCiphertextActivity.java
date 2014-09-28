@@ -119,7 +119,7 @@ public class DisplayCiphertextActivity extends Activity {
 									.createAlert(
 											getString(R.string.error_erasing_key_bytes),
 											e.getMessage(),
-											DisplayCiphertextActivity.this);
+											DisplayCiphertextActivity.this).show();
 						}
 
 					}

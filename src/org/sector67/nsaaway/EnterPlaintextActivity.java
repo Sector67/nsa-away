@@ -91,21 +91,21 @@ public class EnterPlaintextActivity extends Activity implements
 					.createAlert(
 							getString(R.string.error_encrypting_message),
 							e.getMessage(),
-							EnterPlaintextActivity.this);
+							EnterPlaintextActivity.this).show();
 					return;
 				} catch (CipherException e) {
 					AlertUtils
 					.createAlert(
 							getString(R.string.error_encrypting_message),
 							e.getMessage(),
-							EnterPlaintextActivity.this);
+							EnterPlaintextActivity.this).show();
 					return;
 				} catch (EncodingException e) {
 					AlertUtils
 					.createAlert(
 							getString(R.string.error_encrypting_message),
 							e.getMessage(),
-							EnterPlaintextActivity.this);
+							EnterPlaintextActivity.this).show();
 					return;
 				}
 
