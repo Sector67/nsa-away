@@ -7,7 +7,7 @@
     android:padding="20dp"
     tools:context="org.sector67.nsaaway.MainActivity"
     tools:ignore="MergeRootFrame" >
-
+    
     <Button
         android:id="@+id/chooseKeyForEncryptionButton"
         android:layout_width="fill_parent"
@@ -23,21 +23,12 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:text="@string/start_decryption_button" />
-
-    <Button
-        android:id="@+id/startOCRButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/startDecryptionButton"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
-        android:text="@string/button_start_ocr" />
     
     <Button
         android:id="@+id/startComplexOCRButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/startOCRButton"
+        android:layout_below="@+id/startDecryptionButton"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:text="@string/button_start_complex_ocr" /> 
@@ -50,5 +41,14 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:text="@string/start_key_management_button" />
+    
+    <Button
+        android:id="@+id/startOCRButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/startKeyManagementButton"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:text="@string/button_start_ocr" />
 
 </RelativeLayout>

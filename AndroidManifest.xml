@@ -42,6 +42,7 @@
         <activity android:name=".DisplayCiphertextActivity"></activity>
         <activity android:name=".DisplayPlaintextActivity"></activity>
         <activity android:name=".SimpleOCRActivity"></activity>
+        <activity android:name=".CreateAKeyActivity"></activity>
         <activity android:name="org.sector67.nsaaway.ocr.complex.CaptureActivity"></activity>
         <activity android:name="org.sector67.nsaaway.ocr.complex.HelpActivity"></activity>
         
