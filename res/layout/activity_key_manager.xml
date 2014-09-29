@@ -14,12 +14,29 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="@string/create_test_keys_button" />
-     <Button
+
+    <Button
         android:id="@+id/listKeysButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/createTestKeysButton"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
-        android:text="@string/list_keys_button" />   
+        android:text="@string/list_keys_button" />
+     <Button
+        android:id="@+id/addAKeyButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listKeysButton"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:text="@string/add_a_key_button" />   
+     <Button
+        android:id="@+id/createAKeyButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addAKeyButton"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:text="@string/create_a_key_button" />   
 </RelativeLayout>

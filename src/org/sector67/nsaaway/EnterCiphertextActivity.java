@@ -40,6 +40,7 @@ public class EnterCiphertextActivity extends Activity implements
 		KeyChooserDialogFragment.KeyChooserDialogListener {
 
 	private String keyName;
+	private String incomingText = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,13 @@ public class EnterCiphertextActivity extends Activity implements
         	Button decryptTextButton = (Button) findViewById(R.id.decryptTextButton);
         	Button buttonPasteFromClipboard = (Button) findViewById(R.id.buttonPasteFromClipboard);
 
+    		if (incomingText == null) {
+    			Intent i = getIntent();
+    			incomingText = i.getStringExtra(MainActivity.INCOMING_TEXT_KEY);
+    			EditText txtInput = (EditText) findViewById(R.id.ciphertextEditText);
+    			txtInput.setText(incomingText);
+    		}
+    		
         	decryptTextButton.setOnClickListener(new View.OnClickListener() {
             		public void onClick(View arg0) {
                 		Intent nextScreen = new Intent(getApplicationContext(), DisplayPlaintextActivity.class);

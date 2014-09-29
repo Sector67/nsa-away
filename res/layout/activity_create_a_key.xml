@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/createNewKeyHeaderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_key_header_text" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/newKeyNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_key_name_label_text" />
+
+        <EditText
+            android:id="@+id/newKeyNameEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="text">
+	        
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/newKeySizeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_key_size_label_text" />
+
+        <EditText
+            android:id="@+id/newKeySizeEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="number">
+        </EditText>
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/newKeyOffsetTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_key_offset_label_text" />
+
+        <EditText
+            android:id="@+id/newKeyOffsetEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="number">
+	        
+        </EditText>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/newKeySeedTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_key_seed_label_text" />
+
+        <EditText
+            android:id="@+id/newKeySeedEditText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="number">
+	        
+        </EditText>
+    </LinearLayout>
+        
+    <Button
+        android:id="@+id/createNewKeyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/create_new_key_button" />
+
+</LinearLayout>

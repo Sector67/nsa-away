@@ -27,6 +27,7 @@ import org.sector67.otp.key.KeyException;
 import org.sector67.otp.key.KeyStore;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -48,7 +49,9 @@ public class KeyManagerActivity extends Activity {
 
         Button createTestKeys = (Button) findViewById(R.id.createTestKeysButton);
         Button listKeys = (Button) findViewById(R.id.listKeysButton);
-        
+        Button createAKey = (Button) findViewById(R.id.createAKeyButton);
+        //Button addAKey = (Button) findViewById(R.id.addAKeyButton);
+
 		// Listen for a button event
         createTestKeys.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View arg0) {
@@ -79,8 +82,17 @@ public class KeyManagerActivity extends Activity {
 				}
 			}
 		});
+	    // Listen for a button click on the encryption button
+        createAKey.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View arg0) {
+	                Intent nextScreen = new Intent(getApplicationContext(), CreateAKeyActivity.class); 
+	                startActivity(nextScreen); 
+	            }
+	    });
+
 	}
 
+	
 	private List<String> listKeys() throws KeyException {
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 		String keyStorePath = sharedPref.getString(SettingsActivity.KEY_PREF_KEYSTORE_PATH, "");

@@ -18,10 +18,11 @@
     <uses-feature
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
-    
+  	<uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+  	<uses-feature android:name="android.hardware.screen.landscape"/>    
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/xor_v_2"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -44,6 +45,10 @@
         <activity android:name=".DisplayCiphertextActivity"></activity>  
         <activity android:name=".DisplayPlaintextActivity"></activity>
         <activity android:name=".SimpleOCRActivity"></activity>
+        <activity android:name=".CreateAKeyActivity"></activity>
+        <activity android:name="org.sector67.nsaaway.ocr.complex.CaptureActivity"></activity>
+        <activity android:name="org.sector67.nsaaway.ocr.complex.HelpActivity"></activity>
+        
         </application>
         
                    <intent-filter>

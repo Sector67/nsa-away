@@ -235,6 +235,8 @@ public class SimpleOCRActivity extends Activity {
 		TessBaseAPI baseApi = new TessBaseAPI();
 		baseApi.setDebug(true);
 		baseApi.init(DATA_PATH, lang);
+        baseApi.setVariable(TessBaseAPI.VAR_CHAR_WHITELIST, "ABCDEFabcdef0123456789");
+
 		baseApi.setImage(bitmap);
 		
 		String recognizedText = baseApi.getUTF8Text();

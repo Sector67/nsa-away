@@ -54,7 +54,7 @@ import com.ftdi.j2xx.FT_Device;
  * 
  */
 public class DisplayCiphertextActivity extends Activity {
-
+	// Class variables
 	private String keyName;
 	private String ciphertext = null;
 	private String envelope = null;
@@ -86,7 +86,8 @@ public class DisplayCiphertextActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_display_ciphertext);
-
+		
+		// Grab all the buttons
 		Button sendAsKeystrokes = (Button) findViewById(R.id.sendAsKeystrokesButton);
 		Button copyToKeyboardButton = (Button) findViewById(R.id.copyToKeyboardButton);
 		Button eraseKeyAndContinueButton = (Button) findViewById(R.id.eraseKeyAndContinueButton);
@@ -97,12 +98,14 @@ public class DisplayCiphertextActivity extends Activity {
 			length = i.getIntExtra(MainActivity.LENGTH_KEY, -1);
 			offset = i.getIntExtra(MainActivity.OFFSET_KEY, -1);
 			keyName = i.getStringExtra(MainActivity.KEYNAME_KEY);
-
+			//TODO: move the new lines to a configuration or the EnvelopeUtils
 			TextView ciphertextView = (TextView) findViewById(R.id.ciphertext);
 			String result = EnvelopeUtils.getEnvelopeHeader();
 			result = result + EnvelopeUtils.formatHeader("Offset", Integer.toString(offset));
 			result = result + EnvelopeUtils.getBodySeparator();
+			result = result + "\n";
 			result = result + ciphertext;
+			result = result + "\n";
 			result = result + EnvelopeUtils.getEnvelopeFooter();
 			envelope = result;
 			ciphertextView.setText(result);
@@ -174,9 +177,11 @@ public class DisplayCiphertextActivity extends Activity {
 		});
 
 
+
 	    
 		// Listen for a button event
 		eraseKeyAndContinueButton.setOnClickListener(new View.OnClickListener() {
+
 					public void onClick(View arg0) {
 						try {
 							KeyStore ks = KeyUtils.getKeyStore(getApplicationContext());
@@ -193,7 +198,7 @@ public class DisplayCiphertextActivity extends Activity {
 									.createAlert(
 											getString(R.string.error_erasing_key_bytes),
 											e.getMessage(),
-											DisplayCiphertextActivity.this);
+											DisplayCiphertextActivity.this).show();
 						}
 
 					}

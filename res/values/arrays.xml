@@ -7,5 +7,36 @@
     <string-array android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/key_eraser_values" name="pref_key_eraser_values">
         <item android:id="@+id/eraser_value_item1" android:layout_width="wrap_content" android:layout_height="wrap_content">org.sector67.otp.key.MultiPassSecureRandomEraser</item>
         <item android:id="@+id/eraser_value_item2" android:layout_width="wrap_content" android:layout_height="wrap_content">org.sector67.otp.key.MultiPassZeroingEraser</item>
-    </string-array>    
+    </string-array>
+    <string-array name="ocrenginemodes">
+        <item>Tesseract</item>
+        <item>Cube</item>
+        <item>Both</item>
+    </string-array>
+    <string-array name="pagesegmentationmodes">
+        <item>Auto</item>
+        <item>Auto (no OSD)</item>
+        <item>Single block</item>
+        <item>Single character</item>
+        <item>Single column</item>
+        <item>Single line</item>
+        <item>Single word</item>
+        <item>Vertical block</item>
+        <item>Sparse text</item>
+    </string-array>
+
+	<!-- The elements in this array must match to the iso6393 array. -->
+	<string-array name="languagenames">
+		<item>English</item>
+	</string-array>
+
+	<!-- The elements in this array must match to the languagenames array. -->
+	<string-array name="iso6393">
+		<item>eng</item> <!-- English -->
+	</string-array>
+
+	<!-- Unused --> 
+	<string-array name="iso6391">
+		<item>en</item> <!-- English -->
+	</string-array>
 </resources>
