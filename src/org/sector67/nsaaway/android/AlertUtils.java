@@ -22,24 +22,34 @@ import android.content.Context;
 import android.content.DialogInterface;
 
 /**
+ * Class to handle alerts
  * 
- * @author scott.hasse@gmail.com
+ * @author scott.hasse@gmail.com archimedespi3141@gmail.com
  *
  */
 public class AlertUtils {
-
+	
+	// Create an alert
 	public static AlertDialog createAlert(String title, String message, Context context) {
+		// Make an AlertDialog builder
 		AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
 		//TODO: extract string
+		// Set title
 		builder1.setTitle(title);
+		// Set message
 		builder1.setMessage(message);
+		// Set cancelable
 		builder1.setCancelable(true);
+		// Build a new neutral button dialog
 		builder1.setNeutralButton(android.R.string.ok,
 		        new DialogInterface.OnClickListener() {
+			// On click of the neutral button
 		    public void onClick(DialogInterface dialog, int id) {
+		    	// Cancel the dialog
 		        dialog.cancel();
 		    }
 		});
+		// Create the AlertDialog
 		AlertDialog alert11 = builder1.create();
 		return alert11; 
 

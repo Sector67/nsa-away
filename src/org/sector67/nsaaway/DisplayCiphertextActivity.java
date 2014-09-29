@@ -40,7 +40,7 @@ import android.widget.Toast;
  * 
  */
 public class DisplayCiphertextActivity extends Activity {
-
+	// Class variables
 	private String keyName;
 	private String ciphertext = null;
 	private String envelope = null;
@@ -52,7 +52,8 @@ public class DisplayCiphertextActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_display_ciphertext);
-
+		
+		// Grab all the buttons
 		Button sendAsKeystrokes = (Button) findViewById(R.id.sendAsKeystrokesButton);
 		Button copyToKeyboardButton = (Button) findViewById(R.id.copyToKeyboardButton);
 		Button eraseKeyAndContinueButton = (Button) findViewById(R.id.eraseKeyAndContinueButton);
@@ -100,7 +101,7 @@ public class DisplayCiphertextActivity extends Activity {
 			}
 		});
 
-		// Listen for a button event
+		// Listen for a button event on the `erase key and continue` button.
 		eraseKeyAndContinueButton
 				.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View arg0) {
