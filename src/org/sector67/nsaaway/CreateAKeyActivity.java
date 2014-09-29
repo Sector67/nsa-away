@@ -42,28 +42,43 @@ public class CreateAKeyActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_a_key);
-
+		
+		// Create a reference to the button to create a new key
 		Button createNewKeyButton = (Button) findViewById(R.id.createNewKeyButton);
-
+		
+		// On clicking the `create new key` button
 		createNewKeyButton.setOnClickListener(new View.OnClickListener() {
+			// Don't complain about it not being a secure random
 			@SuppressLint("TrulyRandom")
 			public void onClick(View arg0) {
 				try {
+					// New variable to store the random object
 					Random sr = null;
 					//TODO bounds and null checking
+					
+					// Get the text editor field for the key name
 					EditText newKeyNameEditText = (EditText) findViewById(R.id.newKeyNameEditText);
-					String keyName = newKeyNameEditText.getText().toString();
-					if (keyName == null || keyName.equals("")) {
+					String keyName = newKeyNameEditText.getText().toString(); // Make it into a string
+					// If there's no string
+					if (keyName == null || keyName.equals("")) { 
+						// You need to specify a name
 						throw new IllegalArgumentException("You must specify a key name");
 					}
+					// Get text field for key size
 					EditText newKeySizeEditText = (EditText) findViewById(R.id.newKeySizeEditText);
+					// Get the key length in an int
 					int keyLength = Integer.parseInt(newKeySizeEditText.getText().toString());
+					// If the key length is < 1
 					if (keyLength < 1) {
+						// It needs to be more
 						throw new IllegalArgumentException("You must specify a valid key length");
 					}
+					// Get text field for key seed
 					EditText newKeySeedEditText = (EditText) findViewById(R.id.newKeySeedEditText);
-					String newKeySeedText = newKeySeedEditText.getText().toString();
+					String newKeySeedText = newKeySeedEditText.getText().toString(); // Get key seed in a string
+					// If it's null
 					if (newKeySeedText == null || newKeySeedText.equals("")) {
+						// We don't need a seed
 						sr = new SecureRandom();						
 					} else {
 						//This is for testing, SecureRandom produces different randomness even with
@@ -71,20 +86,29 @@ public class CreateAKeyActivity extends Activity {
 						int keySeed = Integer.parseInt(newKeySeedText);
 						sr = new Random(keySeed);						
 					}
+					// Zero the key offset
 					int keyOffset = 0;
+					// Get new key offset text field
 					EditText newKeyOffsetEditText = (EditText) findViewById(R.id.newKeyOffsetEditText);
-					String newKeyOffsetText = newKeyOffsetEditText.getText().toString();
+					String newKeyOffsetText = newKeyOffsetEditText.getText().toString(); // Put key offset in a string
+					// If the key offset's not nothing
 					if (newKeyOffsetText != null && !newKeyOffsetText.equals("")) {
+						// Parse it
 						keyOffset = Integer.parseInt(newKeyOffsetText);
 					}
 
+					// Variable for the bytes of the key
 					byte[] keyBytes = new byte[keyLength];
+					// Fill it up with random bytes
 					sr.nextBytes(keyBytes);
+					// Put it in the keystore
 					KeyStore ks = KeyUtils.getKeyStore(getApplicationContext());
 					ks.addKey(keyName, keyBytes, keyOffset);
+					// Pop toast notification about newly created message
 					Toast.makeText(getApplicationContext(), getString(R.string.new_key_created_message), Toast.LENGTH_SHORT).show();
 				} catch (IllegalArgumentException e) {
 					//this also catches NumberFormatException
+					// Do an error toast on IllegalArgumentExecption
 					Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
 					AlertUtils
 					.createAlert(
@@ -93,6 +117,7 @@ public class CreateAKeyActivity extends Activity {
 							CreateAKeyActivity.this).show();
 					return;
 				} catch (KeyException e) {
+					// Do an error toast on KeyException
 					AlertUtils
 					.createAlert(
 							getString(R.string.error_creating_key_message),
